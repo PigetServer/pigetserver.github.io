@@ -2,37 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Piget - Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Piget Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="dashboard-bg">
-  <aside class="sidebar">
-    <h1 class="sidebar-title">Piget</h1>
+<body class="dashboard">
+  <div class="sidebar">
+    <h1 class="logo">Piget</h1>
     <ul>
-      <li>Stats</li>
-      <li>Leaderboard</li>
-      <li>Chat</li>
-      <li>Clans</li>
-      <li>Market</li>
-      <li>Books</li>
-      <li>Bazaar</li>
-      <li>Inventory</li>
-      <li>Settings</li>
-      <li>News</li>
+      <li>🏠 Dashboard</li>
+      <li>📊 Stats</li>
+      <li>🏆 Leaderboard</li>
+      <li>💬 Chat</li>
+      <li>🛍️ Market</li>
+      <li>📚 Blooks</li>
+      <li>🎒 Inventory</li>
+      <li>⚙️ Settings</li>
     </ul>
-  </aside>
-  <main class="main-dashboard">
-    <header class="dashboard-header">
-      <div id="username-display">User</div>
-    </header>
-    <section class="stats-panel">
-      <div class="stat">Tokens<br><strong>0</strong></div>
-      <div class="stat">Blooks Unlocked<br><strong>0 / 0</strong></div>
-      <div class="stat">Packs Opened<br><strong>0</strong></div>
-      <div class="stat">Messages Sent<br><strong>0</strong></div>
-    </section>
-  </main>
+  </div>
+  <div class="main-content">
+    <h2 id="userTitle">Welcome, User</h2>
+    <div class="stats-container">
+      <div class="stat-card">
+        <h3>Tokens</h3>
+        <p id="tokenCount">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>Blooks Unlocked</h3>
+        <p id="blooksCount">0 / 0</p>
+      </div>
+      <div class="stat-card">
+        <h3>Packs Opened</h3>
+        <p id="packsCount">0</p>
+      </div>
+      <div class="stat-card">
+        <h3>Messages Sent</h3>
+        <p id="messagesCount">0</p>
+      </div>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
