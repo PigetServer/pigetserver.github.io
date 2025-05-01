@@ -1,42 +1,78 @@
-// script.js
-
-// Save user to localStorage during registration
+// Register
 function registerUser() {
-  const username = document.getElementById("register-username").value;
+  const username = document.getElementById("register-username").value.trim();
   const password = document.getElementById("register-password").value;
-  const tos = document.getElementById("tos").checked;
+  const agreed = document.getElementById("terms").checked;
 
-  if (!username || !password || !tos) {
-    alert("Please fill all fields and agree to the Terms of Service.");
+  if (!username || !password || !agreed) {
+    alert("Please complete all fields and agree to the terms.");
     return;
   }
 
-  localStorage.setItem("user", JSON.stringify({ username, password }));
-  alert("Registration successful! Redirecting to login...");
-  window.location.href = "login.html";
-}
-
-// Log user in
-function loginUser() {
-  const username = document.getElementById("login-username").value;
-  const password = document.getElementById("login-password").value;
-  const storedUser = JSON.parse(localStorage.getItem("user"));
-
-  if (!storedUser || storedUser.username !== username || storedUser.password !== password) {
-    alert("Invalid credentials!");
+  if (localStorage.getItem(`user-${username}`)) {
+    alert("Username already exists.");
     return;
   }
 
-  localStorage.setItem("loggedInUser", username);
+  const userData = {
+    username,
+    password,
+    tokens: 0,
+    unlocked: 0,
+    total: 0,
+    packs: 0,
+    messages: 0,
+  };
+
+  localStorage.setItem(`user-${username}`, JSON.stringify(userData));
+  localStorage.setItem("currentUser", username);
   window.location.href = "dashboard.html";
 }
 
-// Load dashboard data
-function loadDashboard() {
-  const username = localStorage.getItem("loggedInUser");
-  if (!username) {
-    window.location.href = "login.html";
+// Login
+function loginUser() {
+  const username = document.getElementById("login-username").value.trim();
+  const password = document.getElementById("login-password").value;
+
+  const data = localStorage.getItem(`user-${username}`);
+  if (!data) {
+    alert("User not found.");
     return;
   }
-  document.getElementById("username-display").textContent = username;
+
+  const user = JSON.parse(data);
+  if (user.password !== password) {
+    alert("Incorrect password.");
+    return;
+  }
+
+  localStorage.setItem("currentUser", username);
+  window.location.href = "dashboard.html";
 }
+
+// Dashboard load
+window.onload = function () {
+  if (document.getElementById("username-display")) {
+    const username = localStorage.getItem("currentUser");
+    if (!username) {
+      window.location.href = "login.html";
+      return;
+    }
+
+    const data = localStorage.getItem(`user-${username}`);
+    if (!data) {
+      alert("User data corrupted.");
+      localStorage.removeItem("currentUser");
+      window.location.href = "login.html";
+      return;
+    }
+
+    const user = JSON.parse(data);
+    document.getElementById("username-display").innerText = user.username;
+    const stats = document.querySelectorAll(".stat strong");
+    stats[0].innerText = user.tokens;
+    stats[1].innerText = `${user.unlocked} / ${user.total}`;
+    stats[2].innerText = user.packs;
+    stats[3].innerText = user.messages;
+  }
+};
