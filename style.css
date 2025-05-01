@@ -66,3 +66,11 @@ body.dashboard {
   font-weight: bold;
   margin: 0;
 }
+.sidebar {
+  width: 220px;
+  background-color: #2a2a2a; /* dark gray */
+  padding: 20px;
+  height: 100vh;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+  border-right: 2px solid #000000; /* black outline */
+}
