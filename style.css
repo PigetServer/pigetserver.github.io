@@ -1,87 +1,68 @@
-body {
+body.dashboard {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background: #1e1e1e;
-  color: white;
+  background: #2f2f2f url('background.png') repeat;
   display: flex;
+  color: white;
+}
+
+.sidebar {
+  width: 220px;
+  background-color: #1c1c1c;
+  padding: 20px;
   height: 100vh;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.left {
-  background: #1e1e1e;
-  flex: 1;
-  padding: 50px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.right {
-  flex: 1;
-  background: url('11a058f1-c9a7-48f6-98bd-6e52e382bf09.png') no-repeat center;
-  background-size: cover;
-}
-
-h1 {
-  font-size: 3em;
-  margin: 0;
-}
-
-.title {
-  font-size: 2.5em;
+.sidebar .logo {
+  font-size: 26px;
   font-weight: bold;
+  margin-bottom: 30px;
   color: white;
 }
 
-p {
-  margin-top: 20px;
-  font-size: 1.2em;
-  color: #ccc;
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-.buttons {
-  margin-top: 30px;
-}
-
-.buttons button {
-  background: none;
-  color: white;
-  border: 2px solid white;
-  padding: 10px 20px;
-  margin-right: 10px;
-  font-size: 1em;
+.sidebar ul li {
+  margin: 15px 0;
   cursor: pointer;
 }
 
-.buttons button:hover {
-  background-color: white;
-  color: black;
+.main-content {
+  flex: 1;
+  padding: 40px;
 }
 
-.top-right {
-  position: absolute;
-  top: 20px;
-  right: 30px;
+#userTitle {
+  font-size: 32px;
+  margin-bottom: 30px;
 }
 
-.top-right button {
-  margin-left: 10px;
-  background: #333;
-  border: none;
-  padding: 10px 20px;
-  color: white;
-  font-size: 1em;
-  cursor: pointer;
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
 }
 
-.top-left {
-  position: absolute;
-  top: 20px;
-  left: 30px;
+.stat-card {
+  background-color: #1f1f1f;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
-.pronounce {
-  margin-top: 20px;
-  font-size: 0.9em;
-  color: #aaa;
+.stat-card h3 {
+  margin: 0;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.stat-card p {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
 }
