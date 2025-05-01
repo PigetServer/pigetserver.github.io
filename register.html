@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piget - Register</title>
-  <link rel="stylesheet" href="register.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="navbar">
@@ -14,35 +14,25 @@
 
   <div class="register-box">
     <h2>Register</h2>
-    <form onsubmit="return validateForm()">
+    <form id="registerForm">
       <div class="input-group">
         <span class="icon">👤</span>
-        <input type="text" placeholder="Username" required />
+        <input type="text" id="reg-username" placeholder="Username" required />
       </div>
       <div class="input-group">
         <span class="icon">🔒</span>
-        <input type="password" placeholder="Password" required />
+        <input type="password" id="reg-password" placeholder="Password" required />
       </div>
       <div class="terms">
         <input type="checkbox" id="tos" />
         <label for="tos">
-          By clicking register I agree to the <a href="#">Terms of Service</a> and hold no liability to the creators of this website.
+          I agree to the <a href="#">Terms of Service</a>.
         </label>
       </div>
       <button type="submit">Register</button>
     </form>
   </div>
 
-  <script>
-    function validateForm() {
-      const tos = document.getElementById("tos");
-      if (!tos.checked) {
-        alert("You must agree to the Terms of Service.");
-        return false;
-      }
-      alert("Registered successfully! (This is just a demo.)");
-      return true;
-    }
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
