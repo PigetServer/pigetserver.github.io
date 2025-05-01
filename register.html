@@ -6,33 +6,21 @@
   <title>Piget - Register</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <div class="navbar">
+<body class="login-bg">
+  <header class="top-bar">
     <div class="logo">Piget</div>
     <a href="login.html" class="nav-link">Login</a>
-  </div>
-
-  <div class="register-box">
-    <h2>Register</h2>
-    <form id="registerForm">
-      <div class="input-group">
-        <span class="icon">👤</span>
-        <input type="text" id="reg-username" placeholder="Username" required />
-      </div>
-      <div class="input-group">
-        <span class="icon">🔒</span>
-        <input type="password" id="reg-password" placeholder="Password" required />
-      </div>
-      <div class="terms">
-        <input type="checkbox" id="tos" />
-        <label for="tos">
-          I agree to the <a href="#">Terms of Service</a>.
-        </label>
-      </div>
-      <button type="submit">Register</button>
-    </form>
-  </div>
-
-  <script src="main.js"></script>
+  </header>
+  <main class="auth-box">
+    <h1>Register</h1>
+    <input type="text" id="register-username" placeholder="Username" />
+    <input type="password" id="register-password" placeholder="Password" />
+    <label>
+      <input type="checkbox" id="terms" />
+      I agree to the Terms of Service
+    </label>
+    <button onclick="registerUser()">Register</button>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
