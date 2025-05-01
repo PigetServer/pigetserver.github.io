@@ -14,47 +14,27 @@ a:hover {
 }
 
 .logo {
-  font-size: 40px;
+  font-size: 28px;
   font-weight: bold;
-  margin-bottom: 20px;
+  color: white;
 }
 
-.container {
+.top-nav {
   display: flex;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.left-panel {
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
   background-color: #2b2b2b;
-  width: 45%;
-  padding: 60px 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
-.left-panel h2 {
-  font-size: 48px;
-  line-height: 1.1;
-  margin: 0 0 20px;
-}
-
-.left-panel p {
-  font-size: 16px;
-  margin-bottom: 40px;
-}
-
-.buttons {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+.nav-buttons .btn {
+  margin-left: 15px;
 }
 
 .btn {
   background-color: #3c3c3c;
   color: white;
-  padding: 15px 25px;
+  padding: 12px 20px;
   border-radius: 12px;
   border: 2px solid white;
   text-decoration: none;
@@ -63,46 +43,35 @@ a:hover {
   cursor: pointer;
 }
 
+.btn.small {
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
 .btn:hover {
   background-color: white;
   color: #2b2b2b;
 }
 
-.right-panel {
-  width: 55%;
-  background-color: #1e1e1e;
-  position: relative;
+.landing {
+  padding: 100px 60px;
 }
 
-.bg-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.landing h1 {
+  font-size: 60px;
+  margin-bottom: 20px;
+  line-height: 1.1;
 }
 
-.form-container {
-  max-width: 400px;
-  margin: 80px auto;
-  padding: 40px;
-  background-color: #2b2b2b;
-  border-radius: 20px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  text-align: center;
-}
-
-.form-container h2 {
+.landing p {
+  font-size: 18px;
   margin-bottom: 30px;
 }
 
-.form-container input {
-  width: 100%;
-  padding: 15px;
-  margin-bottom: 20px;
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
+.buttons {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
-.form-container button {
-  width: 100%;
-}
+/* Reuse existing styles for form-container, inputs, etc. from previous response */
