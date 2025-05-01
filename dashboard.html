@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Piget Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Piget - Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body onload="loadDashboard()">
-  <div class="navbar">
-    <span class="logo"><strong>Piget</strong></span>
-  </div>
-  <div class="sidebar">
+<body class="dashboard-bg">
+  <aside class="sidebar">
+    <h1 class="sidebar-title">Piget</h1>
     <ul>
       <li>Stats</li>
       <li>Leaderboard</li>
       <li>Chat</li>
       <li>Clans</li>
       <li>Market</li>
-      <li>Blooks</li>
+      <li>Books</li>
       <li>Bazaar</li>
       <li>Inventory</li>
       <li>Settings</li>
       <li>News</li>
     </ul>
-  </div>
-  <div class="dashboard-content">
-    <h2 id="username-display">Loading...</h2>
-    <div class="stats-boxes">
-      <div class="stat">Tokens: <strong>0</strong></div>
-      <div class="stat">Blooks Unlocked: <strong>0 / 463</strong></div>
-      <div class="stat">Packs Opened: <strong>0</strong></div>
-      <div class="stat">Messages Sent: <strong>0</strong></div>
-    </div>
-  </div>
-
+  </aside>
+  <main class="main-dashboard">
+    <header class="dashboard-header">
+      <div id="username-display">User</div>
+    </header>
+    <section class="stats-panel">
+      <div class="stat">Tokens<br><strong>0</strong></div>
+      <div class="stat">Blooks Unlocked<br><strong>0 / 0</strong></div>
+      <div class="stat">Packs Opened<br><strong>0</strong></div>
+      <div class="stat">Messages Sent<br><strong>0</strong></div>
+    </section>
+  </main>
   <script src="script.js"></script>
 </body>
 </html>
