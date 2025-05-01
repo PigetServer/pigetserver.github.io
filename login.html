@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piget - Login</title>
-  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="navbar">
@@ -12,19 +12,21 @@
     <a href="register.html" class="nav-link">Register</a>
   </div>
 
-  <div class="login-box">
+  <div class="register-box">
     <h2>Login</h2>
-    <form>
+    <form id="loginForm">
       <div class="input-group">
         <span class="icon">👤</span>
-        <input type="text" placeholder="Username" required />
+        <input type="text" id="login-username" placeholder="Username" required />
       </div>
       <div class="input-group">
         <span class="icon">🔒</span>
-        <input type="password" placeholder="Password" required />
+        <input type="password" id="login-password" placeholder="Password" required />
       </div>
       <button type="submit">Let's Go!</button>
     </form>
   </div>
+
+  <script src="main.js"></script>
 </body>
 </html>
