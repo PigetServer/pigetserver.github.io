@@ -1,169 +1,95 @@
-/* General Styling */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Nunito", sans-serif;
-}
-
 body {
-  background-color: #2f2f2f;
-  background-image: url('background.png'); /* Replace with your actual background image */
-  background-size: cover;
-  background-repeat: repeat;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #2e2e2e;
   color: white;
+  overflow: hidden;
 }
 
-/* Header */
-header {
-  background-color: #1e1e1e;
-  padding: 10px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #000;
+.top-buttons {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
-header h1 {
-  font-size: 32px;
-  font-weight: bold;
-  color: white;
-}
-
-header a {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-  padding: 6px 14px;
+.top-btn {
   background-color: #333;
-  border: 1px solid white;
-  border-radius: 6px;
-  transition: background 0.2s;
+  color: white;
+  padding: 8px 16px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: 0.2s ease;
 }
 
-header a:hover {
+.top-btn:hover {
   background-color: #444;
 }
 
-/* Landing Page */
-.landing {
+.container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: calc(100vh - 60px);
-  padding: 40px;
+  height: 100vh;
 }
 
-.landing-left {
-  max-width: 40%;
+.left {
+  flex: 1;
+  padding: 80px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.landing-left h2 {
-  font-size: 48px;
-  margin-bottom: 20px;
+.left h1 {
+  font-size: 60px;
+  line-height: 1.1;
+  margin: 0 0 20px;
 }
 
-.landing-left p {
+.left p {
   font-size: 18px;
   margin-bottom: 30px;
 }
 
-.landing-left button {
-  margin: 10px 10px 0 0;
-  padding: 12px 20px;
-  font-size: 16px;
-  color: white;
-  background-color: #444;
-  border: 2px solid white;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.landing-left button:hover {
-  background-color: #555;
-}
-
-.landing-right {
+.buttons {
   display: flex;
+  gap: 15px;
   flex-wrap: wrap;
+}
+
+.main-btn {
+  background-color: transparent;
+  border: 2px solid white;
+  padding: 10px 24px;
+  color: white;
+  font-size: 18px;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+.main-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.pronunciation {
+  margin-top: 20px;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.right {
+  flex: 1;
+  background-image: url('assets/background-icons.png');
+  background-size: cover;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  gap: 10px;
-  max-width: 50%;
 }
 
-/* Forms (Login/Register) */
-.form-container {
-  background-color: #1e1e1e;
-  max-width: 400px;
-  margin: 60px auto;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-}
-
-.form-container h2 {
-  text-align: center;
-  font-size: 36px;
-  margin-bottom: 30px;
-}
-
-.form-container input[type="text"],
-.form-container input[type="password"] {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 15px;
-  background-color: #2f2f2f;
-  border: 1px solid #555;
-  border-radius: 8px;
-  color: white;
-}
-
-.form-container input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-.form-container label {
-  font-size: 14px;
-  margin-bottom: 10px;
-  display: inline-block;
-  color: #ccc;
-}
-
-.form-container a {
-  color: #ccc;
-  text-decoration: underline;
-}
-
-.form-container button {
-  width: 100%;
-  padding: 12px;
-  background-color: #444;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-
-.form-container button:hover {
-  background-color: #555;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .landing {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .landing-left,
-  .landing-right {
-    max-width: 100%;
-  }
-
-  .landing-right {
-    justify-content: flex-start;
-  }
+.right img {
+  max-width: 90%;
+  height: auto;
 }
