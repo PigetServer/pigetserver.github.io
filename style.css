@@ -1,176 +1,169 @@
-body.dashboard {
-  margin: 0;
-  font-family: 'Arial', sans-serif;
-  background: #2f2f2f url('background.png') repeat;
-  display: flex;
-  color: white;
-}
-
-.sidebar {
-  width: 220px;
-  background-color: #1c1c1c;
-  padding: 20px;
-  height: 100vh;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.sidebar .logo {
-  font-size: 26px;
-  font-weight: bold;
-  margin-bottom: 30px;
-  color: white;
-}
-
-.sidebar ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  margin: 15px 0;
-  cursor: pointer;
-}
-
-.main-content {
-  flex: 1;
-  padding: 40px;
-}
-
-#userTitle {
-  font-size: 32px;
-  margin-bottom: 30px;
-}
-
-.stats-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.stat-card {
-  background-color: #1f1f1f;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-  text-align: center;
-}
-
-.stat-card h3 {
-  margin: 0;
-  font-size: 18px;
-  margin-bottom: 10px;
-}
-
-.stat-card p {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 0;
-}
-.sidebar {
-  width: 220px;
-  background-color: #2a2a2a; /* dark gray */
-  padding: 20px;
-  height: 100vh;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
-  border-right: 2px solid #000000; /* black outline */
-}
-body.landing-bg {
+/* General Styling */
+* {
   margin: 0;
   padding: 0;
-  font-family: 'Nunito', sans-serif;
-  background: url('background.png') repeat;
-  background-size: contain;
+  box-sizing: border-box;
+  font-family: "Nunito", sans-serif;
+}
+
+body {
+  background-color: #2f2f2f;
+  background-image: url('background.png'); /* Replace with your actual background image */
+  background-size: cover;
+  background-repeat: repeat;
   color: white;
 }
 
-.navbar {
+/* Header */
+header {
+  background-color: #1e1e1e;
+  padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 30px;
-  background-color: #111;
+  border-bottom: 2px solid #000;
 }
 
-.logo {
+header h1 {
   font-size: 32px;
   font-weight: bold;
   color: white;
-  text-shadow: 2px 2px #000;
 }
 
-.nav-buttons .btn {
-  margin-left: 10px;
-  padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  background: #333;
-  color: white;
-  border-radius: 6px;
+header a {
   text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 6px 14px;
+  background-color: #333;
+  border: 1px solid white;
+  border-radius: 6px;
+  transition: background 0.2s;
 }
 
-.nav-buttons .btn.dark:hover {
-  background: #444;
+header a:hover {
+  background-color: #444;
 }
 
-.landing-container {
+/* Landing Page */
+.landing {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  padding: 60px 80px;
+  align-items: center;
+  height: calc(100vh - 60px);
+  padding: 40px;
 }
 
-.left-section {
-  max-width: 500px;
+.landing-left {
+  max-width: 40%;
 }
 
-.left-section h1 {
-  font-size: 56px;
-  line-height: 1.2;
-  color: white;
-  text-shadow: 2px 2px #000;
+.landing-left h2 {
+  font-size: 48px;
+  margin-bottom: 20px;
 }
 
-.left-section p {
+.landing-left p {
   font-size: 18px;
-  margin: 20px 0;
+  margin-bottom: 30px;
 }
 
-.button-group {
-  margin-top: 20px;
-}
-
-.btn {
-  display: inline-block;
-  margin: 8px 10px 0 0;
-  padding: 10px 20px;
-  background: transparent;
+.landing-left button {
+  margin: 10px 10px 0 0;
+  padding: 12px 20px;
+  font-size: 16px;
+  color: white;
+  background-color: #444;
   border: 2px solid white;
-  border-radius: 6px;
-  color: white;
-  font-size: 18px;
-  text-decoration: none;
-  transition: background 0.3s ease;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
-.btn:hover {
-  background: white;
-  color: black;
+.landing-left button:hover {
+  background-color: #555;
 }
 
-.btn.full {
-  display: block;
-  margin-top: 10px;
-  width: 200px;
+.landing-right {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  max-width: 50%;
 }
 
-.right-section img {
-  max-width: 500px;
+/* Forms (Login/Register) */
+.form-container {
+  background-color: #1e1e1e;
+  max-width: 400px;
+  margin: 60px auto;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.form-container h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+.form-container input[type="text"],
+.form-container input[type="password"] {
   width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  background-color: #2f2f2f;
+  border: 1px solid #555;
+  border-radius: 8px;
+  color: white;
 }
 
-.pronunciation {
+.form-container input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.form-container label {
   font-size: 14px;
-  margin-top: 20px;
-  opacity: 0.7;
+  margin-bottom: 10px;
+  display: inline-block;
+  color: #ccc;
+}
+
+.form-container a {
+  color: #ccc;
+  text-decoration: underline;
+}
+
+.form-container button {
+  width: 100%;
+  padding: 12px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.form-container button:hover {
+  background-color: #555;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .landing {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .landing-left,
+  .landing-right {
+    max-width: 100%;
+  }
+
+  .landing-right {
+    justify-content: flex-start;
+  }
 }
