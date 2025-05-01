@@ -1,0 +1,87 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: #1e1e1e;
+  color: white;
+  display: flex;
+  height: 100vh;
+}
+
+.left {
+  background: #1e1e1e;
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.right {
+  flex: 1;
+  background: url('11a058f1-c9a7-48f6-98bd-6e52e382bf09.png') no-repeat center;
+  background-size: cover;
+}
+
+h1 {
+  font-size: 3em;
+  margin: 0;
+}
+
+.title {
+  font-size: 2.5em;
+  font-weight: bold;
+  color: white;
+}
+
+p {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #ccc;
+}
+
+.buttons {
+  margin-top: 30px;
+}
+
+.buttons button {
+  background: none;
+  color: white;
+  border: 2px solid white;
+  padding: 10px 20px;
+  margin-right: 10px;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.buttons button:hover {
+  background-color: white;
+  color: black;
+}
+
+.top-right {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+}
+
+.top-right button {
+  margin-left: 10px;
+  background: #333;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-size: 1em;
+  cursor: pointer;
+}
+
+.top-left {
+  position: absolute;
+  top: 20px;
+  left: 30px;
+}
+
+.pronounce {
+  margin-top: 20px;
+  font-size: 0.9em;
+  color: #aaa;
+}
