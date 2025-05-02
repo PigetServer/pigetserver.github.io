@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Piget - Dashboard</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 </head>
@@ -10,11 +10,11 @@
   <div class="sidebar">
     <h2>Piget</h2>
     <ul>
-      <li><a href="dashboard.html">Dashboard</a></li>
-      <li><a href="settings.html">Settings</a></li>
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
       <li><a href="openbox.html">Open Box</a></li>
-      <li><a href="#" onclick="logout()">Logout</a></li>
+      <li><a href="settings.html">Settings</a></li>
     </ul>
+    <button onclick="logout()">Logout</button>
   </div>
 
   <div class="content">
@@ -46,10 +46,8 @@
       });
     }
 
-    const savedColor = localStorage.getItem("bgColor");
-    if (savedColor) {
-      document.body.style.background = savedColor;
-    }
+    const bg = localStorage.getItem("bgColor");
+    if (bg) document.body.style.backgroundColor = bg;
   </script>
 </body>
 </html>
