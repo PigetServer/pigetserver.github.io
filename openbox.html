@@ -1,55 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piget - Open Box</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 </head>
-<body class="dashboard-body">
-  <div class="dashboard-wrapper">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-logo">Piget</div>
-      <nav class="sidebar-nav">
-        <a href="dashboard.html" class="sidebar-link">Home</a>
-        <a href="open-box.html" class="sidebar-link active">Open Box</a>
-        <a href="#" class="sidebar-link">Market</a>
-        <a href="#" class="sidebar-link">Inventory</a>
-        <a href="settings.html" class="sidebar-link">Settings</a>
-      </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="dashboard-main">
-      <header class="dashboard-header">
-        <h2>Open a Box</h2>
-      </header>
-
-      <section class="dashboard-content">
-        <div class="card box-card">
-          <h3>🌞 Summer Box</h3>
-          <p>Get rare summer-themed items!</p>
-          <button class="btn">Open</button>
-        </div>
-        <div class="card box-card">
-          <h3>🎃 Spooky Box</h3>
-          <p>Halloween treats and surprises await.</p>
-          <button class="btn">Open</button>
-        </div>
-        <div class="card box-card">
-          <h3>❄️ Winter Box</h3>
-          <p>Chill rewards from the frosty season.</p>
-          <button class="btn">Open</button>
-        </div>
-      </section>
-    </main>
+<body>
+  <div class="sidebar">
+    <h2>Piget</h2>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="openbox.html">Open Box</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
   </div>
+  <div class="content">
+    <h1>Open a Box</h1>
+    <div class="boxes">
+      <button>🎁 Summer Box</button>
+      <button>🎃 Spooky Box</button>
+      <button>❄️ Winter Box</button>
+    </div>
+  </div>
+
   <script>
-  (function applyTheme() {
-    const theme = localStorage.getItem('theme') || 'default';
-    document.body.classList.add(`theme-${theme}`);
-})();
-</script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
+      authDomain: "piget-f160e.firebaseapp.com",
+      projectId: "piget-f160e",
+      messagingSenderId: "106356200385",
+      appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    function logout() {
+      firebase.auth().signOut().then(() => {
+        localStorage.removeItem("username");
+        window.location.href = "login.html";
+      });
+    }
+
+    const savedColor = localStorage.getItem("bgColor");
+    if (savedColor) {
+      document.body.style.background = savedColor;
+    }
+  </script>
 </body>
 </html>
