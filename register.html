@@ -5,13 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piget - Register</title>
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
+      authDomain: "piget-f160e.firebaseapp.com",
+      projectId: "piget-f160e",
+      messagingSenderId: "106356200385",
+      appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </head>
 <body>
   <main style="display: flex; align-items: center; justify-content: center; height: 100vh;">
     <div class="card" style="width: 300px;">
       <h2>Register</h2>
       <form onsubmit="register(event)">
-        <input type="text" id="reg-username" placeholder="Username" class="btn" style="width: 100%; margin-bottom: 10px;" required />
+        <input type="email" id="reg-username" placeholder="Email" class="btn" style="width: 100%; margin-bottom: 10px;" required />
         <input type="password" id="reg-password" placeholder="Password" class="btn" style="width: 100%; margin-bottom: 20px;" required />
         <button type="submit" class="btn" style="width: 100%;">Register</button>
       </form>
@@ -21,20 +35,17 @@
   <script>
     function register(event) {
       event.preventDefault();
-      const username = document.getElementById('reg-username').value;
+      const email = document.getElementById('reg-username').value;
       const password = document.getElementById('reg-password').value;
 
-      const users = JSON.parse(localStorage.getItem('users') || '{}');
-
-      if (users[username]) {
-        alert('Username already exists.');
-        return;
-      }
-
-      users[username] = password;
-      localStorage.setItem('users', JSON.stringify(users));
-      localStorage.setItem('loggedInUser', username);
-      window.location.href = 'dashboard.html';
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          localStorage.setItem('loggedInUser', email);
+          window.location.href = 'dashboard.html';
+        })
+        .catch((error) => {
+          alert(error.message);
+        });
     }
 
     (function applyTheme() {
