@@ -2,45 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Piget Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Piget - Dashboard</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body class="dashboard">
-  <div class="sidebar">
-    <h1 class="logo">Piget</h1>
-    <ul>
-      <li>🏠 Dashboard</li>
-      <li>📊 Stats</li>
-      <li>🏆 Leaderboard</li>
-      <li>💬 Chat</li>
-      <li>🛍️ Market</li>
-      <li>📚 Blooks</li>
-      <li>🎒 Inventory</li>
-      <li>⚙️ Settings</li>
-    </ul>
+<body class="dashboard-body">
+  <div class="dashboard-wrapper">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo">Piget</div>
+      <nav class="sidebar-nav">
+        <a href="#" class="sidebar-link active">Home</a>
+        <a href="#" class="sidebar-link">Open Box</a>
+        <a href="#" class="sidebar-link">Market</a>
+        <a href="#" class="sidebar-link">Inventory</a>
+        <a href="#" class="sidebar-link">Settings</a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+      <header class="dashboard-header">
+        <h2>Welcome, Piget Player!</h2>
+      </header>
+
+      <section class="dashboard-content">
+        <div class="card">
+          <h3>Your Stats</h3>
+          <p>Boxes Opened: 0</p>
+          <p>Coins: 0</p>
+        </div>
+        <div class="card">
+          <h3>What's New</h3>
+          <p>New boxes and items arriving soon!</p>
+        </div>
+      </section>
+    </main>
   </div>
-  <div class="main-content">
-    <h2 id="userTitle">Welcome, User</h2>
-    <div class="stats-container">
-      <div class="stat-card">
-        <h3>Tokens</h3>
-        <p id="tokenCount">0</p>
-      </div>
-      <div class="stat-card">
-        <h3>Blooks Unlocked</h3>
-        <p id="blooksCount">0 / 0</p>
-      </div>
-      <div class="stat-card">
-        <h3>Packs Opened</h3>
-        <p id="packsCount">0</p>
-      </div>
-      <div class="stat-card">
-        <h3>Messages Sent</h3>
-        <p id="messagesCount">0</p>
-      </div>
-    </div>
-  </div>
-  <script src="script.js"></script>
 </body>
 </html>
