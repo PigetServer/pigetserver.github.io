@@ -1,101 +1,81 @@
-* {
+body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body, html {
   font-family: 'Segoe UI', sans-serif;
-  height: 100vh;
-  background-color: #1e1e1e;
   color: #fff;
+  background-color: #1e1e1e;
 }
 
 .container {
   display: flex;
   height: 100vh;
-  overflow: hidden;
 }
 
 .sidebar {
-  width: 250px;
+  width: 220px;
   background-color: #121212;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 30px 20px;
 }
 
 .logo {
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 20px;
   color: #fff;
-  margin-bottom: 30px;
 }
 
 .nav-links {
   display: flex;
   flex-direction: column;
-  gap: 12px;
 }
 
 .nav-links a {
-  color: #ccc;
+  color: #aaa;
   text-decoration: none;
-  padding: 10px;
-  border-radius: 6px;
-  transition: background 0.2s, color 0.2s;
+  margin-bottom: 15px;
+  padding: 8px;
+  border-radius: 8px;
+  transition: background 0.3s;
 }
 
-.nav-links a.active,
-.nav-links a:hover {
+.nav-links a:hover,
+.nav-links .active {
   background-color: #2a2a2a;
   color: #fff;
 }
 
 .logout-btn {
-  background-color: #e50914;
+  background-color: #d11a2a;
+  color: #fff;
   border: none;
-  padding: 12px;
-  width: 100%;
-  color: white;
-  border-radius: 6px;
+  padding: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s;
 }
 
 .logout-btn:hover {
-  background-color: #c10610;
+  background-color: #b11222;
 }
 
 .main-content {
   flex: 1;
-  padding: 60px 40px;
+  padding: 40px;
 }
 
-.main-content h2 {
-  font-size: 28px;
-  margin-bottom: 10px;
+.settings-buttons button,
+.boxes .box-btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  margin: 10px;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
-.main-content p {
-  margin-bottom: 30px;
-  color: #ccc;
-}
-
-.stats {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.stat-card {
-  background-color: #2c2c2c;
-  padding: 20px;
-  border-radius: 10px;
-  font-size: 18px;
-  min-width: 160px;
-  text-align: center;
-  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+.settings-buttons button:hover,
+.boxes .box-btn:hover {
+  background-color: #555;
 }
