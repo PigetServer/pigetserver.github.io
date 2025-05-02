@@ -9,7 +9,6 @@
 <body>
   <div class="sidebar">
     <h2>Piget</h2>
-    <p id="welcome"></p>
     <ul>
       <li><a href="dashboard.html">Dashboard</a></li>
       <li><a href="settings.html">Settings</a></li>
@@ -17,8 +16,9 @@
       <li><a href="#" onclick="logout()">Logout</a></li>
     </ul>
   </div>
+
   <div class="content">
-    <h1>Welcome to Piget, <span id="usernameDisplay"></span>!</h1>
+    <h1>Welcome, <span id="usernameDisplay"></span>!</h1>
     <p>This is your dashboard.</p>
   </div>
 
@@ -44,6 +44,11 @@
         localStorage.removeItem("username");
         window.location.href = "login.html";
       });
+    }
+
+    const savedColor = localStorage.getItem("bgColor");
+    if (savedColor) {
+      document.body.style.background = savedColor;
     }
   </script>
 </body>
