@@ -4,23 +4,33 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piget - Register</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="login-bg">
-  <header class="top-bar">
+<body>
+  <header class="top-nav">
     <div class="logo">Piget</div>
     <a href="login.html" class="nav-link">Login</a>
   </header>
-  <main class="auth-box">
-    <h1>Register</h1>
-    <input type="text" id="register-username" placeholder="Username" />
-    <input type="password" id="register-password" placeholder="Password" />
-    <label>
-      <input type="checkbox" id="terms" />
-      I agree to the Terms of Service
-    </label>
-    <button onclick="registerUser()">Register</button>
-  </main>
-  <script src="script.js"></script>
+
+  <div class="main-content">
+    <div class="register-container">
+      <h1>Register</h1>
+      <form>
+        <div class="input-group">
+          <span class="icon">👤</span>
+          <input type="text" placeholder="Username" required>
+        </div>
+        <div class="input-group">
+          <span class="icon">📧</span>
+          <input type="email" placeholder="Email" required>
+        </div>
+        <div class="input-group">
+          <span class="icon">🔒</span>
+          <input type="password" placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn">Sign Up</button>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
