@@ -1,14 +1,15 @@
-// Simulate login storage
-window.addEventListener("DOMContentLoaded", () => {
-  const user = JSON.parse(localStorage.getItem("currentUser"));
+document.addEventListener("DOMContentLoaded", () => {
+  const user = localStorage.getItem("username") || "User";
+  document.getElementById("welcome").textContent = `Welcome, ${user}!`;
 
-  if (!user) {
-    window.location.href = "login.html"; // force login if not logged in
-  } else {
-    document.getElementById("userTitle").textContent = `Welcome, ${user.username}`;
-    document.getElementById("tokenCount").textContent = user.tokens ?? 0;
-    document.getElementById("blooksCount").textContent = `${user.blooksUnlocked ?? 0} / 463`;
-    document.getElementById("packsCount").textContent = user.packsOpened ?? 0;
-    document.getElementById("messagesCount").textContent = user.messagesSent ?? 0;
-  }
+  const coins = localStorage.getItem("coins") || "0";
+  const opened = localStorage.getItem("openedBoxes") || "0";
+
+  document.getElementById("coins").textContent = coins;
+  document.getElementById("opened").textContent = opened;
 });
+
+function logout() {
+  localStorage.removeItem("username");
+  window.location.href = "login.html";
+}
