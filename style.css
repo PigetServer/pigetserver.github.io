@@ -40,7 +40,7 @@ body {
   text-decoration: underline;
 }
 
-/* Center page content */
+/* Main content area to center forms */
 .main-content {
   flex: 1;
   display: flex;
@@ -48,14 +48,14 @@ body {
   align-items: center;
 }
 
-/* Login/Register box */
+/* Login/Register container */
 .login-container,
 .register-container {
   background-color: #2b2b2b;
   width: 350px;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   text-align: center;
 }
 
@@ -66,7 +66,7 @@ body {
   margin-bottom: 30px;
 }
 
-/* Input styling */
+/* Input field styles */
 .input-group {
   display: flex;
   align-items: center;
@@ -90,7 +90,7 @@ body {
   font-size: 16px;
 }
 
-/* Button */
+/* Button styles */
 .btn {
   background-color: #3c3c3c;
   border: 2px solid white;
@@ -105,4 +105,49 @@ body {
 .btn:hover {
   background-color: white;
   color: #1e1e1e;
+}
+
+/* Optional: Landing page layout buttons */
+.landing-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.landing-buttons a {
+  display: inline-block;
+  text-align: center;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  background-color: #3c3c3c;
+  border: 2px solid white;
+  text-decoration: none;
+  transition: 0.3s ease;
+}
+
+.landing-buttons a:hover {
+  background-color: white;
+  color: #1e1e1e;
+}
+
+/* Optional: Landing page text */
+.landing-left {
+  padding: 80px 60px;
+  max-width: 500px;
+}
+
+.landing-title {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.landing-subtitle {
+  font-size: 16px;
+  color: #ccc;
+  margin-bottom: 30px;
 }
