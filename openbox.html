@@ -1,31 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Piget - Open Box</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-</head>
-<body>
-  <div class="sidebar">
-    <h2>Piget</h2>
-    <ul>
-      <li><a href="dashboard.html">Dashboard</a></li>
-      <li><a href="settings.html">Settings</a></li>
-      <li><a href="openbox.html">Open Box</a></li>
-      <li><a href="#" onclick="logout()">Logout</a></li>
-    </ul>
-  </div>
-  <div class="content">
-    <h1>Open a Box</h1>
-    <div class="boxes">
-      <button>🎁 Summer Box</button>
-      <button>🎃 Spooky Box</button>
-      <button>❄️ Winter Box</button>
-    </div>
-  </div>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Piget Open Box</title>
+  <link rel="stylesheet" href="style.css" />
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-  <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
       authDomain: "piget-f160e.firebaseapp.com",
@@ -33,19 +16,52 @@
       messagingSenderId: "106356200385",
       appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
     };
-    firebase.initializeApp(firebaseConfig);
 
-    function logout() {
-      firebase.auth().signOut().then(() => {
-        localStorage.removeItem("username");
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        document.getElementById("welcome").textContent = `Welcome, ${user.displayName || "User"}!`;
+      } else {
+        window.location.href = "login.html";
+      }
+    });
+
+    window.logout = function() {
+      signOut(auth).then(() => {
         window.location.href = "login.html";
       });
-    }
+    };
 
-    const savedColor = localStorage.getItem("bgColor");
-    if (savedColor) {
-      document.body.style.background = savedColor;
-    }
+    window.onload = () => {
+      const savedColor = localStorage.getItem("background");
+      if (savedColor) document.body.style.backgroundColor = savedColor;
+    };
   </script>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div>
+        <h1 class="logo">Piget</h1>
+        <nav class="nav-links">
+          <a href="dashboard.html">Dashboard</a>
+          <a href="openbox.html" class="active">Open Box</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </aside>
+    <main class="main-content">
+      <h2 id="welcome">Welcome, User!</h2>
+      <p>Select a box to open:</p>
+      <div class="boxes">
+        <button class="box-btn">Summer Box</button>
+        <button class="box-btn">Spooky Box</button>
+        <button class="box-btn">Winter Box</button>
+      </div>
+    </main>
+  </div>
 </body>
 </html>
