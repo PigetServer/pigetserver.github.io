@@ -9,9 +9,9 @@
 <body>
   <div class="container">
     <aside class="sidebar">
-      <div class="sidebar-top">
+      <div>
         <h1 class="logo">Piget</h1>
-        <nav>
+        <nav class="nav-links">
           <a href="dashboard.html" class="active">Dashboard</a>
           <a href="openbox.html">Open Box</a>
           <a href="settings.html">Settings</a>
@@ -22,6 +22,10 @@
     <main class="main-content">
       <h2 id="welcome">Welcome, User!</h2>
       <p>This is your dashboard. Customize, open boxes, and explore.</p>
+      <div class="stats">
+        <div class="stat-card">Coins: <span id="coins">0</span></div>
+        <div class="stat-card">Opened Boxes: <span id="opened">0</span></div>
+      </div>
     </main>
   </div>
 
