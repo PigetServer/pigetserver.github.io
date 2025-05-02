@@ -5,45 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piget - Dashboard</title>
   <link rel="stylesheet" href="style.css" />
-</head>
-<body class="dashboard-body">
-  <div class="dashboard-wrapper">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-logo">Piget</div>
-      <nav class="sidebar-nav">
-        <a href="#" class="sidebar-link active">Home</a>
-        <a href="open-box.html" class="sidebar-link">Open Box</a>
-        <a href="#" class="sidebar-link">Market</a>
-        <a href="#" class="sidebar-link">Inventory</a>
-        <a href="settings.html" class="sidebar-link">Settings</a>
-      </nav>
-    </aside>
 
-    <!-- Main Content -->
-    <main class="dashboard-main">
-      <header class="dashboard-header">
-        <p id="user-info">Loading user...</p>
-      </header>
-
-      <section class="dashboard-content">
-        <div class="card">
-          <h3>Your Stats</h3>
-          <p>Boxes Opened: 0</p>
-          <p>Coins: 0</p>
-        </div>
-        <div class="card">
-          <h3>What's New</h3>
-          <p>New boxes and items arriving soon!</p>
-        </div>
-      </section>
-    </main>
-  </div>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
   <script>
-  (function applyTheme() {
-    const theme = localStorage.getItem('theme') || 'default';
-    document.body.classList.add(`theme-${theme}`);
-})();
-</script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
+      authDomain: "piget-f160e.firebaseapp.com",
+      projectId: "1:106356200385:web:6e4f808dbe3381f3de9540",
+      messagingSenderId: "106356200385",
+      appId: "piget-f160e"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+</head>
+<body>
+  <div class="navbar">
+    <h1>Piget</h1>
+    <div style="margin-left:auto;">
+      <span id="welcomeUser" style="margin-right: 20px;"></span>
+      <button onclick="logout()" class="btn">Logout</button>
+    </div>
+  </div>
+
+  <main style="padding: 2rem;">
+    <h2>Welcome to your dashboard</h2>
+    <p>More features coming soon...</p>
+  </main>
+
+  <script>
+    function applyTheme() {
+      const theme = localStorage.getItem('theme') || 'default';
+      document.body.classList.add(`theme-${theme}`);
+    }
+
+    function logout() {
+      firebase.auth().signOut().then(() => {
+        localStorage.removeItem('loggedInUser');
+        localStorage.removeItem('username');
+        window.location.href = 'login.html';
+      });
+    }
+
+    function checkUser() {
+      const username = localStorage.getItem('username');
+      const uid = localStorage.getItem('loggedInUser');
+
+      if (!username || !uid) {
+        window.location.href = 'login.html';
+      } else {
+        document.getElementById('welcomeUser').textContent = `Hello, ${username}!`;
+      }
+    }
+
+    applyTheme();
+    checkUser();
+  </script>
 </body>
 </html>
