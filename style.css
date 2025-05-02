@@ -233,3 +233,28 @@ body {
 .box-card p {
   margin-bottom: 15px;
 }
+/* === Theme Backgrounds === */
+.theme-default {
+  background-color: #1e1e1e;
+}
+
+.theme-blue {
+  background-color: #001f3f;
+}
+
+.theme-purple {
+  background-color: #2e003e;
+}
+
+/* Optional: Match dashboard background globally */
+body.theme-default,
+body.theme-blue,
+body.theme-purple {
+  color: white;
+}
+
+.theme-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
