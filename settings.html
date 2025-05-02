@@ -1,92 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Piget Settings</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+  <title>Piget - Settings</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Piget</h2>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="openbox.html">Open Box</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h1>Settings</h1>
+    <p>Choose your background color:</p>
+    <button onclick="setBackground('#1e1e1e')">Dark</button>
+    <button onclick="setBackground('#ffffff')">Light</button>
+    <button onclick="setBackground('#d0f0c0')">Mint</button>
+  </div>
+
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
       authDomain: "piget-f160e.firebaseapp.com",
       projectId: "piget-f160e",
+      messagingSenderId: "106356200385",
       appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
     };
     firebase.initializeApp(firebaseConfig);
-  </script>
-  <style>
-    /* Same style as dashboard for consistency */
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #1e1e1e;
-      color: white;
-      display: flex;
+
+    function setBackground(color) {
+      localStorage.setItem("bgColor", color);
+      document.body.style.background = color;
     }
-    .sidebar {
-      width: 220px;
-      background-color: #111;
-      height: 100vh;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-    .sidebar h2 {
-      font-size: 24px;
-      margin-bottom: 30px;
-    }
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 8px;
-      transition: background 0.2s;
-    }
-    .sidebar a:hover {
-      background-color: #333;
-    }
-    .main-content {
-      flex: 1;
-      padding: 40px;
-    }
-    button {
-      padding: 10px 20px;
-      margin: 5px;
-      border: none;
-      border-radius: 8px;
-      background-color: #444;
-      color: white;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #666;
-    }
-  </style>
-</head>
-<body>
-  <div class="sidebar">
-    <h2>Piget</h2>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="openbox.html">Open Box</a>
-    <a href="settings.html">Settings</a>
-    <button id="logout">Logout</button>
-  </div>
-  <div class="main-content">
-    <h1>Settings</h1>
-    <p>Customize your experience:</p>
-    <button onclick="changeBackground('#1e1e1e')">Dark</button>
-    <button onclick="changeBackground('#222831')">Midnight</button>
-    <button onclick="changeBackground('#ffffff')">Light</button>
-  </div>
-  <script>
-    firebase.auth().onAuthStateChanged(user => {
-      if (!user) {
-        window.location.href = "login.html";
-      }
-    });
 
     function logout() {
       firebase.auth().signOut().then(() => {
@@ -95,9 +46,9 @@
       });
     }
 
-    function changeBackground(color) {
-      document.body.style.backgroundColor = color;
-      document.querySelector('.main-content').style.backgroundColor = color;
+    const savedColor = localStorage.getItem("bgColor");
+    if (savedColor) {
+      document.body.style.background = savedColor;
     }
   </script>
 </body>
