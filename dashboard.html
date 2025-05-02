@@ -1,14 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Piget Dashboard</title>
-  <link rel="stylesheet" href="style.css" />
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+  <title>Piget - Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Piget</h2>
+    <p id="welcome"></p>
+    <ul>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="openbox.html">Open Box</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+  <div class="content">
+    <h1>Welcome to Piget, <span id="usernameDisplay"></span>!</h1>
+    <p>This is your dashboard.</p>
+  </div>
+
   <script>
-    // Replace this with your actual Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
       authDomain: "piget-f160e.firebaseapp.com",
@@ -17,100 +31,20 @@
       appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
     };
     firebase.initializeApp(firebaseConfig);
-  </script>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #1e1e1e;
-      color: white;
-      display: flex;
+
+    const user = localStorage.getItem("username");
+    if (!user) {
+      window.location.href = "login.html";
+    } else {
+      document.getElementById("usernameDisplay").textContent = user;
     }
 
-    .sidebar {
-      width: 220px;
-      background-color: #111;
-      height: 100vh;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    .sidebar h2 {
-      font-size: 24px;
-      margin-bottom: 30px;
-    }
-
-    .sidebar a {
-      display: block;
-      color: white;
-      text-decoration: none;
-      margin: 10px 0;
-      padding: 10px;
-      border-radius: 8px;
-      transition: background 0.2s;
-    }
-
-    .sidebar a:hover {
-      background-color: #333;
-    }
-
-    .main-content {
-      flex: 1;
-      padding: 40px;
-    }
-
-    #logout {
-      margin-top: 20px;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 8px;
-      background-color: crimson;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    #logout:hover {
-      background-color: #a30000;
-    }
-
-    h1 {
-      font-size: 32px;
-    }
-
-  </style>
-</head>
-<body>
-  <div class="sidebar">
-    <h2>Piget</h2>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="openbox.html">Open Box</a>
-    <a href="settings.html">Settings</a>
-    <button id="logout">Logout</button>
-  </div>
-  <div class="main-content">
-    <h1>Welcome, <span id="username">User</span>!</h1>
-    <p>This is your dashboard.</p>
-  </div>
-
-  <script>
-    firebase.auth().onAuthStateChanged(user => {
-      if (!user) {
-        window.location.href = "login.html";
-      } else {
-        const username = localStorage.getItem("username");
-        if (username) {
-          document.getElementById("username").textContent = username;
-        }
-      }
-    });
-
-    document.getElementById("logout").addEventListener("click", () => {
+    function logout() {
       firebase.auth().signOut().then(() => {
         localStorage.removeItem("username");
         window.location.href = "login.html";
       });
-    });
+    }
   </script>
 </body>
 </html>
