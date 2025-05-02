@@ -10,15 +10,33 @@
   <main style="display: flex; align-items: center; justify-content: center; height: 100vh;">
     <div class="card" style="width: 300px;">
       <h2>Register</h2>
-      <form>
-        <input type="text" placeholder="Username" class="btn" style="width: 100%; margin-bottom: 10px;" />
-        <input type="password" placeholder="Password" class="btn" style="width: 100%; margin-bottom: 20px;" />
+      <form onsubmit="register(event)">
+        <input type="text" id="reg-username" placeholder="Username" class="btn" style="width: 100%; margin-bottom: 10px;" required />
+        <input type="password" id="reg-password" placeholder="Password" class="btn" style="width: 100%; margin-bottom: 20px;" required />
         <button type="submit" class="btn" style="width: 100%;">Register</button>
       </form>
     </div>
   </main>
 
   <script>
+    function register(event) {
+      event.preventDefault();
+      const username = document.getElementById('reg-username').value;
+      const password = document.getElementById('reg-password').value;
+
+      const users = JSON.parse(localStorage.getItem('users') || '{}');
+
+      if (users[username]) {
+        alert('Username already exists.');
+        return;
+      }
+
+      users[username] = password;
+      localStorage.setItem('users', JSON.stringify(users));
+      localStorage.setItem('loggedInUser', username);
+      window.location.href = 'dashboard.html';
+    }
+
     (function applyTheme() {
       const theme = localStorage.getItem('theme') || 'default';
       document.body.classList.add(`theme-${theme}`);
