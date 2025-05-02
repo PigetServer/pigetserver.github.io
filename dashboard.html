@@ -1,53 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Piget - Dashboard</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Piget Dashboard</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 </head>
 <body>
-  <div class="sidebar">
-    <h2>Piget</h2>
-    <ul>
-      <li><a href="dashboard.html" class="active">Dashboard</a></li>
-      <li><a href="openbox.html">Open Box</a></li>
-      <li><a href="settings.html">Settings</a></li>
-    </ul>
-    <button onclick="logout()">Logout</button>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="sidebar-top">
+        <h1 class="logo">Piget</h1>
+        <nav>
+          <a href="dashboard.html" class="active">Dashboard</a>
+          <a href="openbox.html">Open Box</a>
+          <a href="settings.html">Settings</a>
+        </nav>
+      </div>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </aside>
+    <main class="main-content">
+      <h2 id="welcome">Welcome, User!</h2>
+      <p>This is your dashboard. Customize, open boxes, and explore.</p>
+    </main>
   </div>
 
-  <div class="content">
-    <h1>Welcome, <span id="usernameDisplay"></span>!</h1>
-    <p>This is your dashboard.</p>
-  </div>
-
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
-      authDomain: "piget-f160e.firebaseapp.com",
-      projectId: "piget-f160e",
-      messagingSenderId: "106356200385",
-      appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
-    };
-    firebase.initializeApp(firebaseConfig);
-
-    const user = localStorage.getItem("username");
-    if (!user) {
-      window.location.href = "login.html";
-    } else {
-      document.getElementById("usernameDisplay").textContent = user;
-    }
-
-    function logout() {
-      firebase.auth().signOut().then(() => {
-        localStorage.removeItem("username");
-        window.location.href = "login.html";
-      });
-    }
-
-    const bg = localStorage.getItem("bgColor");
-    if (bg) document.body.style.backgroundColor = bg;
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
