@@ -4,29 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piget - Login</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header class="top-nav">
-    <div class="logo">Piget</div>
-    <a href="register.html" class="nav-link">Register</a>
-  </header>
-
-  <div class="main-content">
-    <div class="login-container">
-      <h1>Login</h1>
+  <main style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+    <div class="card" style="width: 300px;">
+      <h2>Login</h2>
       <form>
-        <div class="input-group">
-          <span class="icon">👤</span>
-          <input type="text" placeholder="Username" required>
-        </div>
-        <div class="input-group">
-          <span class="icon">🔒</span>
-          <input type="password" placeholder="Password" required>
-        </div>
-        <button type="submit" class="btn">Let's Go!</button>
+        <input type="text" placeholder="Username" class="btn" style="width: 100%; margin-bottom: 10px;" />
+        <input type="password" placeholder="Password" class="btn" style="width: 100%; margin-bottom: 20px;" />
+        <button type="submit" class="btn" style="width: 100%;">Login</button>
       </form>
     </div>
-  </div>
+  </main>
+
+  <script>
+    (function applyTheme() {
+      const theme = localStorage.getItem('theme') || 'default';
+      document.body.classList.add(`theme-${theme}`);
+    })();
+  </script>
 </body>
 </html>
