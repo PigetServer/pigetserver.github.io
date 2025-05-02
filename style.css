@@ -1,16 +1,27 @@
-body {
+/* General reset */
+* {
+  box-sizing: border-box;
   margin: 0;
+  padding: 0;
+}
+
+/* Base styles */
+body {
   font-family: "Segoe UI", sans-serif;
   background-color: #1e1e1e;
   color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-a {
-  color: #00bfff;
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
+/* Top navigation bar */
+.top-nav {
+  background-color: #2b2b2b;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
 }
 
 .logo {
@@ -19,59 +30,79 @@ a:hover {
   color: white;
 }
 
-.top-nav {
+.nav-link {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+}
+
+/* Center page content */
+.main-content {
+  flex: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  padding: 20px 40px;
+}
+
+/* Login/Register box */
+.login-container,
+.register-container {
   background-color: #2b2b2b;
+  width: 350px;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  text-align: center;
 }
 
-.nav-buttons .btn {
-  margin-left: 15px;
+.login-container h1,
+.register-container h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 30px;
 }
 
+/* Input styling */
+.input-group {
+  display: flex;
+  align-items: center;
+  background-color: #3c3c3c;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.input-group .icon {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.input-group input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  width: 100%;
+  font-size: 16px;
+}
+
+/* Button */
 .btn {
   background-color: #3c3c3c;
-  color: white;
-  padding: 12px 20px;
-  border-radius: 12px;
   border: 2px solid white;
-  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
   font-size: 16px;
-  transition: all 0.3s ease;
+  color: white;
   cursor: pointer;
-}
-
-.btn.small {
-  padding: 8px 16px;
-  font-size: 14px;
+  transition: all 0.3s ease;
 }
 
 .btn:hover {
   background-color: white;
-  color: #2b2b2b;
+  color: #1e1e1e;
 }
-
-.landing {
-  padding: 100px 60px;
-}
-
-.landing h1 {
-  font-size: 60px;
-  margin-bottom: 20px;
-  line-height: 1.1;
-}
-
-.landing p {
-  font-size: 18px;
-  margin-bottom: 30px;
-}
-
-.buttons {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-/* Reuse existing styles for form-container, inputs, etc. from previous response */
