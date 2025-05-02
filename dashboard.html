@@ -39,5 +39,11 @@
       </section>
     </main>
   </div>
+  <script>
+  (function applyTheme() {
+    const theme = localStorage.getItem('theme') || 'default';
+    document.body.classList.add(`theme-${theme}`);
+})();
+</script>
 </body>
 </html>
