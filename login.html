@@ -6,7 +6,7 @@
   <title>Piget - Login</title>
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Firebase SDKs -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
   <script>
@@ -25,33 +25,14 @@
     <div class="card" style="width: 300px;">
       <h2>Login</h2>
       <form onsubmit="login(event)">
-        <input type="email" id="login-username" placeholder="Email" class="btn" style="width: 100%; margin-bottom: 10px;" required />
-        <input type="password" id="login-password" placeholder="Password" class="btn" style="width: 100%; margin-bottom: 20px;" required />
+        <input type="text" id="username" placeholder="Username" class="btn" required style="width: 100%; margin-bottom: 10px;" />
+        <input type="password" id="password" placeholder="Password" class="btn" required style="width: 100%; margin-bottom: 20px;" />
         <button type="submit" class="btn" style="width: 100%;">Login</button>
       </form>
     </div>
   </main>
 
-  <script>
-    function login(event) {
-      event.preventDefault();
-      const email = document.getElementById('login-username').value;
-      const password = document.getElementById('login-password').value;
-
-      firebase.auth().signInWithEmailAndPassword(email, password)
-        .then(() => {
-          localStorage.setItem('loggedInUser', email);
-          window.location.href = 'dashboard.html';
-        })
-        .catch(() => {
-          alert('Invalid email or password.');
-        });
-    }
-
-    (function applyTheme() {
-      const theme = localStorage.getItem('theme') || 'default';
-      document.body.classList.add(`theme-${theme}`);
-    })();
-  </script>
+  <script src="auth.js"></script>
+  <script>applyTheme();</script>
 </body>
 </html>
