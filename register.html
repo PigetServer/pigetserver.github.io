@@ -6,7 +6,7 @@
   <title>Piget - Register</title>
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Firebase SDKs -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
   <script>
@@ -23,35 +23,16 @@
 <body>
   <main style="display: flex; align-items: center; justify-content: center; height: 100vh;">
     <div class="card" style="width: 300px;">
-      <h2>Create a User</h2>
+      <h2>Create Account</h2>
       <form onsubmit="register(event)">
-        <input type="text" id="username" placeholder="Username" class="btn" style="width: 100%; margin-bottom: 20px;" required />
+        <input type="text" id="username" placeholder="Username" class="btn" required style="width: 100%; margin-bottom: 10px;" />
+        <input type="password" id="password" placeholder="Password" class="btn" required style="width: 100%; margin-bottom: 20px;" />
         <button type="submit" class="btn" style="width: 100%;">Register</button>
       </form>
     </div>
   </main>
 
-  <script>
-    function register(event) {
-      event.preventDefault();
-      const username = document.getElementById('username').value;
-
-      firebase.auth().signInAnonymously()
-        .then((userCredential) => {
-          const uid = userCredential.user.uid;
-          localStorage.setItem('loggedInUser', uid);
-          localStorage.setItem('username', username);
-          window.location.href = 'dashboard.html';
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
-    }
-
-    (function applyTheme() {
-      const theme = localStorage.getItem('theme') || 'default';
-      document.body.classList.add(`theme-${theme}`);
-    })();
-  </script>
+  <script src="auth.js"></script>
+  <script>applyTheme();</script>
 </body>
 </html>
