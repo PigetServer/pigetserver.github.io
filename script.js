@@ -1,31 +1,14 @@
-// Firebase auth
-firebase.auth().onAuthStateChanged((user) => {
-  if (!user) {
-    window.location.href = "login.html";
+onAuthStateChanged(auth, user => {
+  if (user) {
+    const name = user.displayName || "User";
+    document.getElementById("userDisplay").textContent = `Logged in as: ${name}`;
+    document.getElementById("usernameDisplay").textContent = name;
+
+    // Placeholder values for stats
+    document.getElementById("tokensCount").textContent = "100";
+    document.getElementById("packsOpenedCount").textContent = "3";
+
   } else {
-    const userDisplay = document.getElementById("userDisplay");
-    if (userDisplay) {
-      userDisplay.innerText = `Logged in as: ${user.uid}`;
-    }
+    window.location.href = "login.html";
   }
 });
-
-function logout() {
-  firebase.auth().signOut().then(() => {
-    window.location.href = "login.html";
-  });
-}
-
-// Set background color
-function setBackground(color) {
-  document.body.style.backgroundColor = color;
-  localStorage.setItem("backgroundColor", color);
-}
-
-// Load background color on page load
-window.onload = function () {
-  const savedColor = localStorage.getItem("backgroundColor");
-  if (savedColor) {
-    document.body.style.backgroundColor = savedColor;
-  }
-};
