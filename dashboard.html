@@ -3,35 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Piget - Dashboard</title>
+  <title>Piget Dashboard</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js"></script>
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
-      authDomain: "piget-f160e.firebaseapp.com",
-      projectId: "piget-f160e",
-      appId: "1:106356200385:web:6e4f808dbe3381f3de9540",
-      messagingSenderId: "106356200385"
-    };
-    firebase.initializeApp(firebaseConfig);
-  </script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
   <div class="sidebar">
     <h2>Piget</h2>
     <a href="dashboard.html" class="active">Dashboard</a>
-    <a href="openbox.html">Open Box</a>
     <a href="settings.html">Settings</a>
-    <a href="#" onclick="logout()" style="color: red;">Logout</a>
+    <a href="market.html">Market</a>
+    <button onclick="logout()" class="logout-btn">Logout</button>
+    <div class="username" id="userDisplay">Logged in as: ...</div>
   </div>
 
   <div class="main-content">
     <h1>Welcome to Your Dashboard</h1>
-    <p id="userDisplay">Loading user...</p>
+    <p>This is your Piget dashboard. More features will be added here later.</p>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
+      authDomain: "piget-f160e.firebaseapp.com",
+      projectId: "piget-f160e",
+      messagingSenderId: "106356200385",
+      appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </body>
 </html>
