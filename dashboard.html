@@ -3,30 +3,33 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Piget Dashboard</title>
+  <title>Piget - Dashboard</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
+      authDomain: "piget-f160e.firebaseapp.com",
+      projectId: "piget-f160e",
+      appId: "1:106356200385:web:6e4f808dbe3381f3de9540",
+      messagingSenderId: "106356200385"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </head>
 <body>
-  <div class="container">
-    <aside class="sidebar">
-      <div>
-        <h1 class="logo">Piget</h1>
-        <nav class="nav-links">
-          <a href="dashboard.html" class="active">Dashboard</a>
-          <a href="openbox.html">Open Box</a>
-          <a href="settings.html">Settings</a>
-        </nav>
-      </div>
-      <button class="logout-btn" onclick="logout()">Logout</button>
-    </aside>
-    <main class="main-content">
-      <h2 id="welcome">Welcome, User!</h2>
-      <p>This is your dashboard. Customize, open boxes, and explore.</p>
-      <div class="stats">
-        <div class="stat-card">Coins: <span id="coins">0</span></div>
-        <div class="stat-card">Opened Boxes: <span id="opened">0</span></div>
-      </div>
-    </main>
+  <div class="sidebar">
+    <h2>Piget</h2>
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="openbox.html">Open Box</a>
+    <a href="settings.html">Settings</a>
+    <a href="#" onclick="logout()" style="color: red;">Logout</a>
+  </div>
+
+  <div class="main-content">
+    <h1>Welcome to Your Dashboard</h1>
+    <p id="userDisplay">Loading user...</p>
   </div>
 
   <script src="script.js"></script>
