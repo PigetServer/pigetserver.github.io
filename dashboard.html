@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piget Dashboard</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-  <script src="script.js" defer></script>
+  <script type="module" src="dashboard.js" defer></script>
 </head>
 <body>
   <div class="sidebar">
@@ -16,23 +14,12 @@
     <a href="settings.html">Settings</a>
     <a href="market.html">Market</a>
     <button onclick="logout()" class="logout-btn">Logout</button>
-    <div class="username" id="userDisplay">Logged in as: ...</div>
+    <div class="username" id="userDisplay">Logged in as: Loading...</div>
   </div>
 
   <div class="main-content">
     <h1>Welcome to Your Dashboard</h1>
-    <p>This is your Piget dashboard. More features will be added here later.</p>
+    <p>This is where your blooks, stats, and more will show!</p>
   </div>
-
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
-      authDomain: "piget-f160e.firebaseapp.com",
-      projectId: "piget-f160e",
-      messagingSenderId: "106356200385",
-      appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
-    };
-    firebase.initializeApp(firebaseConfig);
-  </script>
 </body>
 </html>
