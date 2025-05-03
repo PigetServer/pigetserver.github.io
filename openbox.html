@@ -3,65 +3,44 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Piget Open Box</title>
+  <title>Piget - Open Box</title>
   <link rel="stylesheet" href="style.css" />
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js"></script>
+  <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
       authDomain: "piget-f160e.firebaseapp.com",
       projectId: "piget-f160e",
-      messagingSenderId: "106356200385",
-      appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
+      appId: "1:106356200385:web:6e4f808dbe3381f3de9540",
+      messagingSenderId: "106356200385"
     };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        document.getElementById("welcome").textContent = `Welcome, ${user.displayName || "User"}!`;
-      } else {
-        window.location.href = "login.html";
-      }
-    });
-
-    window.logout = function() {
-      signOut(auth).then(() => {
-        window.location.href = "login.html";
-      });
-    };
-
-    window.onload = () => {
-      const savedColor = localStorage.getItem("background");
-      if (savedColor) document.body.style.backgroundColor = savedColor;
-    };
+    firebase.initializeApp(firebaseConfig);
   </script>
 </head>
 <body>
-  <div class="container">
-    <aside class="sidebar">
-      <div>
-        <h1 class="logo">Piget</h1>
-        <nav class="nav-links">
-          <a href="dashboard.html">Dashboard</a>
-          <a href="openbox.html" class="active">Open Box</a>
-          <a href="settings.html">Settings</a>
-        </nav>
-      </div>
-      <button class="logout-btn" onclick="logout()">Logout</button>
-    </aside>
-    <main class="main-content">
-      <h2 id="welcome">Welcome, User!</h2>
-      <p>Choose a box to open:</p>
-      <div class="boxes">
-        <button class="box-btn">🎉 Summer Box</button>
-        <button class="box-btn">🎃 Spooky Box</button>
-        <button class="box-btn">❄️ Winter Box</button>
-      </div>
-    </main>
+  <div class="sidebar">
+    <h2>Piget</h2>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="openbox.html" class="active">Open Box</a>
+    <a href="settings.html">Settings</a>
+    <a href="#" onclick="logout()" style="color: red;">Logout</a>
   </div>
+
+  <div class="main-content">
+    <h1>Open a Box</h1>
+    <div class="box-container">
+      <div class="box">
+        <h3>Summer Box</h3>
+        <button class="modern-btn">Open</button>
+      </div>
+      <div class="box">
+        <h3>Spooky Box</h3>
+        <button class="modern-btn">Open</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
