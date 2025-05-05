@@ -1,48 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Piget - Login</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta charset="UTF-8">
+  <title>Login - Piget</title>
+  <link rel="stylesheet" href="auth.css">
 </head>
 <body>
-  <div class="auth-container">
-    <h1>Login</h1>
-    <input type="text" id="login-username" placeholder="Username"/>
-    <input type="password" id="login-password" placeholder="Password"/>
-    <button onclick="login()">Login</button>
-    <div id="loading" class="loading" style="display:none;"></div>
-    <p>Don't have an account? <a href="register.html">Register</a></p>
+  <div class="top-right">
+    <a href="index.html">Home</a>
+    <a href="register.html">Register</a>
   </div>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-  <script>
+  <div class="auth-container">
+    <h1>Login</h1>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button id="loginBtn" onclick="login()">Login</button>
+    <div id="spinner" class="spinner" style="display:none;"></div>
+    <p id="login-error" class="error-message"></p>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
     const firebaseConfig = {
       apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
       authDomain: "piget-f160e.firebaseapp.com",
       projectId: "piget-f160e",
-      appId: "1:106356200385:web:6e4f808dbe3381f3de9540",
-      messagingSenderId: "106356200385"
+      storageBucket: "piget-f160e.appspot.com",
+      messagingSenderId: "106356200385",
+      appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
     };
-    firebase.initializeApp(firebaseConfig);
-    const auth = firebase.auth();
 
-    function login() {
-      const username = document.getElementById("login-username").value.trim();
-      const password = document.getElementById("login-password").value;
-      const fakeEmail = username + "@piget.local";
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-      document.getElementById("loading").style.display = "block";
-      auth.signInWithEmailAndPassword(fakeEmail, password)
-        .then(() => {
-          window.location.href = "dashboard.html";
-        })
-        .catch((error) => {
-          alert(error.message);
-          document.getElementById("loading").style.display = "none";
-        });
+    async function login() {
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value;
+      const errorEl = document.getElementById('login-error');
+      const spinner = document.getElementById('spinner');
+      const btn = document.getElementById('loginBtn');
+
+      errorEl.textContent = "";
+      spinner.style.display = "block";
+      btn.disabled = true;
+
+      try {
+        const email = username + "@piget.local";
+        await signInWithEmailAndPassword(auth, email, password);
+        localStorage.setItem('currentUser', username);
+        window.location.href = "dashboard.html";
+      } catch (err) {
+        errorEl.textContent = err.message;
+        spinner.style.display = "none";
+        btn.disabled = false;
+      }
     }
   </script>
 </body>
