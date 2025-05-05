@@ -1,131 +1,109 @@
-/* Reset & base styles */
-* {
+body {
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   font-family: 'Segoe UI', sans-serif;
+  background-color: var(--background-color, #1e1e1e);
+  color: white;
 }
 
-body {
+.container {
   display: flex;
-  background-color: var(--bg-color, #1e1e1e);
-  color: white;
   height: 100vh;
 }
 
-/* Sidebar styles */
 .sidebar {
   width: 220px;
-  background-color: #2b2b2b;
+  background-color: #2a2a2a;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  height: 100vh;
-  position: fixed;
+  gap: 10px;
 }
 
-.sidebar .logo {
+.logo {
   font-size: 28px;
+  font-weight: bold;
   color: #fff;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
-.sidebar a {
-  color: white;
-  text-decoration: none;
-  padding: 12px 15px;
-  border-radius: 8px;
-  transition: 0.2s;
+.nav-button {
   background-color: transparent;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 16px;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.sidebar a:hover {
+.nav-button:hover {
   background-color: rgb(70, 70, 70);
 }
 
-.sidebar a.active {
+.nav-button.active {
   background-color: gray;
 }
 
-.logout-btn {
+.logout-button {
   margin-top: auto;
-  padding: 12px 15px;
-  background-color: #e74c3c;
-  color: white;
+  padding: 12px 16px;
   border: none;
+  background-color: rgb(200, 50, 50);
+  color: white;
+  font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: background-color 0.2s;
 }
 
-.logout-btn:hover {
-  background-color: #c0392b;
+.logout-button:hover {
+  background-color: rgb(180, 40, 40);
 }
 
-/* Main content styles */
-.main-content {
-  margin-left: 240px;
+.main {
+  flex-grow: 1;
   padding: 30px;
-  flex: 1;
   overflow-y: auto;
+  background-color: var(--background-color, #1e1e1e);
 }
 
-.main-content h1 {
-  margin-bottom: 10px;
-}
-
-.main-content h2 {
-  margin-top: 30px;
-  margin-bottom: 15px;
-}
-
-/* Pack/Box Grid */
-.pack-grid {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-}
-
-.pack-card {
-  background-color: #333;
+.stats {
+  margin-top: 20px;
   padding: 20px;
+  background-color: #2e2e2e;
   border-radius: 10px;
-  width: 200px;
+}
+
+.blooks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.blook {
+  background-color: #2a2a2a;
+  padding: 16px;
+  border-radius: 10px;
+  width: 180px;
   text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
 }
 
-.pack-card h3 {
-  margin-bottom: 10px;
-}
-
-.open-btn {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 8px;
-  background-color: #2980b9;
-  color: white;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.open-btn:hover {
-  background-color: #1c6ea4;
-}
-
-/* Background color settings buttons */
-.color-buttons button {
-  margin-right: 10px;
+.blook button {
   margin-top: 10px;
-  padding: 10px 15px;
+  padding: 8px 12px;
   border: none;
-  border-radius: 8px;
   background-color: #444;
   color: white;
+  border-radius: 6px;
   cursor: pointer;
-  transition: 0.2s;
+  transition: background-color 0.2s;
 }
 
-.color-buttons button:hover {
+.blook button:hover {
   background-color: rgb(70, 70, 70);
 }
