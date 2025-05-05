@@ -16,17 +16,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-onAuthStateChanged(auth, user => {
+const usernameSpan = document.getElementById("username");
+const logoutBtn = document.getElementById("logoutBtn");
+
+onAuthStateChanged(auth, (user) => {
   if (user) {
-    const userDisplay = document.getElementById("userDisplay");
-    userDisplay.textContent = `Logged in as: ${user.displayName || "User"}`;
+    usernameSpan.textContent = user.displayName || "User";
   } else {
     window.location.href = "login.html";
   }
 });
 
-window.logout = function () {
+logoutBtn.addEventListener("click", () => {
   signOut(auth).then(() => {
     window.location.href = "login.html";
   });
-};
+});
