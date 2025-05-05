@@ -1,38 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Piget Market</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="firebase-config.js"></script>
-  <script defer src="auth.js"></script>
+  <title>Market - Piget</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="firebase-auth.js"></script>
+  <script type="module" src="market.js"></script>
 </head>
 <body>
-  <div class="container">
-    <aside class="sidebar">
-      <h2>Piget</h2>
-      <nav>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="market.html" class="active">Market</a>
-        <a href="settings.html">Settings</a>
-        <button id="logoutBtn" class="logout-btn">Logout</button>
-      </nav>
-    </aside>
-    <main class="main-content">
-      <div class="user-display">Welcome, <span id="username"></span>!</div>
-      <h1>Market - Blooks</h1>
-      <div class="packs-container">
-        <div class="pack">
-          <h2>Summer Blook</h2>
-          <button class="open-btn">Open</button>
-        </div>
-        <div class="pack">
-          <h2>Spooky Blook</h2>
-          <button class="open-btn">Open</button>
-        </div>
+  <div class="sidebar">
+    <div class="logo">Piget</div>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="settings.html">Settings</a>
+    <a href="market.html" class="active">Market</a>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="main-content">
+    <h1>Market</h1>
+    <div class="pack-grid">
+      <div class="pack-card">
+        <h3>Starter Blook</h3>
+        <button class="open-btn">Open</button>
       </div>
-    </main>
+      <div class="pack-card">
+        <h3>Epic Blook</h3>
+        <button class="open-btn">Open</button>
+      </div>
+    </div>
   </div>
 </body>
 </html>
