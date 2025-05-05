@@ -1,35 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Piget Settings</title>
-  <link rel="stylesheet" href="style.css" />
-  <script defer src="firebase-config.js"></script>
-  <script defer src="auth.js"></script>
-  <script defer src="settings.js"></script>
+  <title>Settings - Piget</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="firebase-auth.js"></script>
+  <script type="module" src="settings.js"></script>
 </head>
 <body>
-  <div class="container">
-    <aside class="sidebar">
-      <h2>Piget</h2>
-      <nav>
-        <a href="dashboard.html">Dashboard</a>
-        <a href="market.html">Market</a>
-        <a href="settings.html" class="active">Settings</a>
-        <button id="logoutBtn" class="logout-btn">Logout</button>
-      </nav>
-    </aside>
-    <main class="main-content">
-      <div class="user-display">Welcome, <span id="username"></span>!</div>
-      <h1>Settings</h1>
-      <div class="setting-option">
-        <p>Choose Background Color:</p>
-        <button class="color-btn" onclick="changeBackground('#1e1e1e')">Dark</button>
-        <button class="color-btn" onclick="changeBackground('#ffffff')">Light</button>
-        <button class="color-btn" onclick="changeBackground('#2a2a72')">Blue</button>
-      </div>
-    </main>
+  <div class="sidebar">
+    <div class="logo">Piget</div>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="settings.html" class="active">Settings</a>
+    <a href="market.html">Market</a>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="main-content">
+    <h1>Settings</h1>
+    <p>Change your background color:</p>
+    <div class="color-buttons">
+      <button onclick="setBackgroundColor('#1e1e1e')">Default</button>
+      <button onclick="setBackgroundColor('#2c3e50')">Blue Gray</button>
+      <button onclick="setBackgroundColor('#3c3c3c')">Dark Gray</button>
+    </div>
   </div>
 </body>
 </html>
