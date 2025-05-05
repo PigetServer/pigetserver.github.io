@@ -1,0 +1,83 @@
+/* auth.css — For landing, login, and register pages */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1e1e1e;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.left-side {
+  flex: 1;
+  background-color: #1e1e1e;
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.left-side h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.left-side h2 {
+  font-size: 36px;
+  margin: 5px 0;
+  color: white;
+}
+
+.left-side p {
+  margin-top: 20px;
+  font-size: 15px;
+  color: #ccc;
+}
+
+.left-side button {
+  margin-top: 15px;
+  padding: 12px 0;
+  width: 180px;
+  font-size: 16px;
+  border: 2px solid white;
+  border-radius: 5px;
+  background: none;
+  color: white;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.left-side button:hover {
+  background-color: rgb(70, 70, 70);
+  color: white;
+}
+
+.right-side {
+  flex: 1;
+  background-color: #2a2a2a;
+  position: relative;
+}
+
+.auth-nav {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+}
+
+.auth-nav a {
+  margin-left: 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.auth-nav a:hover {
+  color: #ccc;
+}
