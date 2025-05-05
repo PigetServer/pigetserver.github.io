@@ -5,40 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piget Settings</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-  <script src="script.js" defer></script>
+  <script defer src="firebase-config.js"></script>
+  <script defer src="auth.js"></script>
+  <script defer src="settings.js"></script>
 </head>
 <body>
-  <div class="sidebar">
-    <h2>Piget</h2>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="settings.html" class="active">Settings</a>
-    <a href="market.html">Market</a>
-    <button onclick="logout()" class="logout-btn">Logout</button>
-    <div class="username" id="userDisplay">Logged in as: ...</div>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>Piget</h2>
+      <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="market.html">Market</a>
+        <a href="settings.html" class="active">Settings</a>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <div class="user-display">Welcome, <span id="username"></span>!</div>
+      <h1>Settings</h1>
+      <div class="setting-option">
+        <p>Choose Background Color:</p>
+        <button class="color-btn" onclick="changeBackground('#1e1e1e')">Dark</button>
+        <button class="color-btn" onclick="changeBackground('#ffffff')">Light</button>
+        <button class="color-btn" onclick="changeBackground('#2a2a72')">Blue</button>
+      </div>
+    </main>
   </div>
-
-  <div class="main-content">
-    <h1>Settings</h1>
-    <p>Choose a background color:</p>
-    <div class="box-container">
-      <button class="modern-btn" onclick="setBackgroundColor('#1e1e1e')">Default Dark</button>
-      <button class="modern-btn" onclick="setBackgroundColor('#2c3e50')">Blue Gray</button>
-      <button class="modern-btn" onclick="setBackgroundColor('#111')">Pitch Black</button>
-      <button class="modern-btn" onclick="setBackgroundColor('#444')">Soft Gray</button>
-    </div>
-  </div>
-
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
-      authDomain: "piget-f160e.firebaseapp.com",
-      projectId: "piget-f160e",
-      messagingSenderId: "106356200385",
-      appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
-    };
-    firebase.initializeApp(firebaseConfig);
-  </script>
 </body>
 </html>
