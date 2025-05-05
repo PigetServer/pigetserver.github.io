@@ -2,55 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piget - Login</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
   <div class="auth-container">
-    <h1>Piget Login</h1>
-    <input type="email" id="loginEmail" placeholder="Username" />
-    <input type="password" id="loginPassword" placeholder="Password" />
-    <button id="loginBtn">Login</button>
-    <div id="loginLoading" class="loading" style="display: none;"></div>
+    <h1>Login</h1>
+    <input type="text" id="login-username" placeholder="Username"/>
+    <input type="password" id="login-password" placeholder="Password"/>
+    <button onclick="login()">Login</button>
+    <div id="loading" class="loading" style="display:none;"></div>
     <p>Don't have an account? <a href="register.html">Register</a></p>
   </div>
 
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
       authDomain: "piget-f160e.firebaseapp.com",
       projectId: "piget-f160e",
-      messagingSenderId: "106356200385",
-      appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
+      appId: "1:106356200385:web:6e4f808dbe3381f3de9540",
+      messagingSenderId: "106356200385"
     };
     firebase.initializeApp(firebaseConfig);
-
     const auth = firebase.auth();
-    const loginBtn = document.getElementById('loginBtn');
-    const loginLoading = document.getElementById('loginLoading');
 
-    loginBtn.addEventListener('click', () => {
-      loginBtn.disabled = true;
-      loginLoading.style.display = 'inline-block';
+    function login() {
+      const username = document.getElementById("login-username").value.trim();
+      const password = document.getElementById("login-password").value;
+      const fakeEmail = username + "@piget.local";
 
-      const email = document.getElementById('loginEmail').value;
-      const password = document.getElementById('loginPassword').value;
-
-      auth.signInWithEmailAndPassword(email, password)
+      document.getElementById("loading").style.display = "block";
+      auth.signInWithEmailAndPassword(fakeEmail, password)
         .then(() => {
-          window.location.href = 'dashboard.html';
+          window.location.href = "dashboard.html";
         })
-        .catch(err => {
-          alert(err.message);
-        })
-        .finally(() => {
-          loginBtn.disabled = false;
-          loginLoading.style.display = 'none';
+        .catch((error) => {
+          alert(error.message);
+          document.getElementById("loading").style.display = "none";
         });
-    });
+    }
   </script>
 </body>
 </html>
