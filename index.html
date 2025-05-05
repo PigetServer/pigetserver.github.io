@@ -1,38 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
   <title>Piget</title>
-  <link rel="stylesheet" href="auth.css" />
+  <link rel="stylesheet" href="auth.css">
 </head>
-<body class="landing-body">
-  <div class="landing-container">
-    <div class="landing-left">
-      <h1 class="landing-title">Piget</h1>
-      <h2 class="landing-subtitle">
-        First<br />
-        Private<br />
-        Server<br />
-        With Pigs<br />
-      </h2>
-      <p class="landing-description">
-        The first pack opening game with pigs involved!<br />
-        Created By HJr and Kadmos using html css and js!
-      </p>
-      <div class="landing-buttons">
-        <a href="register.html" class="landing-button">Register</a>
-        <a href="market.html" class="landing-button">Store</a>
-        <a href="https://discord.gg/2m36VhX9Ec" target="_blank" class="landing-button">Discord</a>
-      </div>
-      <p class="landing-pronunciation">🔊 Pronunciation ("Pig-it")</p>
+<body>
+  <div class="top-right">
+    <a href="login.html">Login</a>
+    <a href="register.html">Register</a>
+  </div>
+
+  <div class="left-section">
+    <h1>Piget</h1>
+    <h2>First<br>Private<br>Server<br>With Pigs</h2>
+    <p>The first pack opening game with pigs involved!<br>
+       Created By HJr and Kadmos using HTML, CSS, and JS!</p>
+
+    <div class="button-container">
+      <button onclick="location.href='register.html'">Register</button>
+      <button onclick="location.href='market.html'">Store</button>
+      <button onclick="window.open('https://discord.com', '_blank')">Discord</button>
     </div>
-    <div class="landing-right">
-      <div class="landing-nav">
-        <a href="login.html" class="landing-nav-btn">Login</a>
-        <a href="register.html" class="landing-nav-btn">Register</a>
-      </div>
-    </div>
+  </div>
+
+  <div class="right-section">
+    <!-- You can put a background image or graphic here if needed -->
   </div>
 </body>
 </html>
