@@ -3,28 +3,35 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Piget - Welcome</title>
+  <title>Piget</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <header style="display: flex; justify-content: space-between; align-items: center; padding: 20px;">
-    <h1 style="margin: 0; font-size: 32px;">Piget</h1>
-    <div>
-      <a href="login.html" class="btn">Login</a>
-      <a href="register.html" class="btn">Register</a>
+<body class="landing-body">
+  <div class="landing-container">
+    <div class="landing-left">
+      <h1 class="landing-title">Piget</h1>
+      <h2 class="landing-subtitle">
+        First<br />
+        Private<br />
+        Server
+      </h2>
+      <p class="landing-description">
+        The first ever open-source Blooket private server<br />
+        created by Xotic written entirely in JavaScript.
+      </p>
+      <div class="landing-buttons">
+        <a href="register.html" class="landing-button">Register</a>
+        <a href="market.html" class="landing-button">Store</a>
+        <a href="https://discord.gg" target="_blank" class="landing-button">Discord</a>
+      </div>
+      <p class="landing-pronunciation">🔊 Pronunciation ("Pig-it")</p>
     </div>
-  </header>
-
-  <main style="text-align: center; margin-top: 100px;">
-    <h2>Welcome to Piget</h2>
-    <p>The ultimate box opening game experience!</p>
-  </main>
-
-  <script>
-    (function applyTheme() {
-      const theme = localStorage.getItem('theme') || 'default';
-      document.body.classList.add(`theme-${theme}`);
-    })();
-  </script>
+    <div class="landing-right">
+      <div class="landing-nav">
+        <a href="login.html" class="landing-nav-btn">Login</a>
+        <a href="register.html" class="landing-nav-btn">Register</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
