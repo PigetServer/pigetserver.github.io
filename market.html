@@ -5,51 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piget Market</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
-  <script src="script.js" defer></script>
+  <script defer src="firebase-config.js"></script>
+  <script defer src="auth.js"></script>
 </head>
 <body>
-  <div class="sidebar">
-    <h2>Piget</h2>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="settings.html">Settings</a>
-    <a href="market.html" class="active">Market</a>
-    <button onclick="logout()" class="logout-btn">Logout</button>
-    <div class="username" id="userDisplay">Logged in as: ...</div>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>Piget</h2>
+      <nav>
+        <a href="dashboard.html">Dashboard</a>
+        <a href="market.html" class="active">Market</a>
+        <a href="settings.html">Settings</a>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+      </nav>
+    </aside>
+    <main class="main-content">
+      <div class="user-display">Welcome, <span id="username"></span>!</div>
+      <h1>Market - Blooks</h1>
+      <div class="packs-container">
+        <div class="pack">
+          <h2>Summer Blook</h2>
+          <button class="open-btn">Open</button>
+        </div>
+        <div class="pack">
+          <h2>Spooky Blook</h2>
+          <button class="open-btn">Open</button>
+        </div>
+      </div>
+    </main>
   </div>
-
-  <div class="main-content">
-    <h1>Blook Market</h1>
-    <div class="box-container">
-      <div class="box">
-        <h3>Summer Blook</h3>
-        <p>🌞 A sunny seasonal pack!</p>
-        <button class="modern-btn">Open</button>
-      </div>
-      <div class="box">
-        <h3>Spooky Blook</h3>
-        <p>🎃 Only the brave dare!</p>
-        <button class="modern-btn">Open</button>
-      </div>
-      <div class="box">
-        <h3>Winter Blook</h3>
-        <p>❄️ Chill and thrill!</p>
-        <button class="modern-btn">Open</button>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Firebase config
-    const firebaseConfig = {
-      apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
-      authDomain: "piget-f160e.firebaseapp.com",
-      projectId: "piget-f160e",
-      messagingSenderId: "106356200385",
-      appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
-    };
-    firebase.initializeApp(firebaseConfig);
-  </script>
 </body>
 </html>
