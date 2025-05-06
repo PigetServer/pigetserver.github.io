@@ -3,32 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Settings - Piget</title>
+  <title>Piget | Settings</title>
   <link rel="stylesheet" href="main.css" />
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+  <script defer src="settings.js"></script>
 </head>
 <body>
   <div class="sidebar">
-    <h2 class="logo">Piget</h2>
-    <a href="dashboard.html" class="sidebar-btn">Dashboard</a>
-    <a href="market.html" class="sidebar-btn">Market</a>
-    <a href="settings.html" class="sidebar-btn active">Settings</a>
-    <button type="button" class="logout-btn" id="logoutBtn">Logout</button>
+    <div>
+      <h2>Piget</h2>
+      <div class="nav-links">
+        <a href="dashboard.html">Dashboard</a>
+        <a href="market.html">Market</a>
+        <a href="settings.html" class="active">Settings</a>
+      </div>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
   </div>
 
   <div class="main-content">
-    <h1 id="welcome">Welcome, User!</h1>
-    <div class="settings-section">
-      <h2>Change Background</h2>
-      <div class="color-options">
-        <button class="bg-btn" data-color="#1e1e1e">Dark</button>
-        <button class="bg-btn" data-color="#2c2c2c">Gray</button>
-        <button class="bg-btn" data-color="#3b3b3b">Slate</button>
-      </div>
-    </div>
+    <h1>Settings</h1>
+    <p>Choose Background:</p>
+    <button onclick="setBackground('#1e1e1e')">Dark</button>
+    <button onclick="setBackground('#ffffff')">Light</button>
+    <button onclick="setBackground('#2e2a4f')">Purple</button>
   </div>
-
-  <script src="settings.js"></script>
 </body>
 </html>
