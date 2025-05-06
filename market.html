@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Market - Piget</title>
-  <link rel="stylesheet" href="style.css">
-  <script type="module" src="firebase-auth.js"></script>
-  <script type="module" src="market.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Piget | Market</title>
+  <link rel="stylesheet" href="main.css" />
 </head>
 <body>
   <div class="sidebar">
-    <div class="logo">Piget</div>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="settings.html">Settings</a>
-    <a href="market.html" class="active">Market</a>
+    <h1 class="logo">Piget</h1>
+    <a href="dashboard.html" class="nav-link">Dashboard</a>
+    <a href="settings.html" class="nav-link">Settings</a>
+    <a class="nav-link active">Market</a>
     <button class="logout-btn" onclick="logout()">Logout</button>
   </div>
 
-  <div class="main-content">
-    <h1>Market</h1>
-    <div class="pack-grid">
-      <div class="pack-card">
-        <h3>Starter Blook</h3>
-        <button class="open-btn">Open</button>
-      </div>
-      <div class="pack-card">
-        <h3>Epic Blook</h3>
+  <div class="main">
+    <h1 id="welcome">Welcome, User!</h1>
+    <div class="packs-container">
+      <div class="pack">
+        <h2>Starter Blook</h2>
         <button class="open-btn">Open</button>
       </div>
     </div>
   </div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script src="firebase-init.js"></script>
+  <script src="market.js"></script>
 </body>
 </html>
