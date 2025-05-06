@@ -1,63 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Register - Piget</title>
-  <link rel="stylesheet" href="auth.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Piget Register</title>
+  <link rel="stylesheet" href="auth.css" />
 </head>
 <body>
-  <div class="top-right">
-    <a href="index.html">Home</a>
-    <a href="login.html">Login</a>
+  <div class="form-container">
+    <h2>Register</h2>
+    <form id="register-form">
+      <input type="text" id="register-username" placeholder="Username" required />
+      <input type="password" id="register-password" placeholder="Password" required />
+      <label class="tos">
+        <input type="checkbox" id="tos-check" required />
+        I agree to the <a href="tos.html" target="_blank">Terms of Service</a>
+      </label>
+      <button type="submit" id="register-btn">Register</button>
+      <div id="register-loading" class="loading" style="display:none;"></div>
+      <p>Already have an account? <a href="login.html">Login</a></p>
+    </form>
   </div>
 
-  <div class="auth-container">
-    <h1>Register</h1>
-    <input type="text" id="username" placeholder="Choose a Username">
-    <input type="password" id="password" placeholder="Choose a Password">
-    <button id="registerBtn" onclick="register()">Register</button>
-    <div id="spinner" class="spinner" style="display:none;"></div>
-    <p id="register-error" class="error-message"></p>
-  </div>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
-      authDomain: "piget-f160e.firebaseapp.com",
-      projectId: "piget-f160e",
-      storageBucket: "piget-f160e.appspot.com",
-      messagingSenderId: "106356200385",
-      appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    async function register() {
-      const username = document.getElementById('username').value.trim();
-      const password = document.getElementById('password').value;
-      const errorEl = document.getElementById('register-error');
-      const spinner = document.getElementById('spinner');
-      const btn = document.getElementById('registerBtn');
-
-      errorEl.textContent = "";
-      spinner.style.display = "block";
-      btn.disabled = true;
-
-      try {
-        const email = username + "@piget.local";
-        await createUserWithEmailAndPassword(auth, email, password);
-        localStorage.setItem('currentUser', username);
-        window.location.href = "dashboard.html";
-      } catch (err) {
-        errorEl.textContent = err.message;
-        spinner.style.display = "none";
-        btn.disabled = false;
-      }
-    }
-  </script>
+  <script type="module" src="auth.js"></script>
 </body>
 </html>
