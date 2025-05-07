@@ -1,61 +1,89 @@
-// Firebase imports
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js";
 import {
-  getAuth,
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
-import {
-  getFirestore,
+  auth,
+  db,
   doc,
   getDoc,
-  setDoc
-} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js";
+  setDoc,
+  updateDoc,
+  onAuthStateChanged,
+  signOut
+} from "./dashboard.html"; // Same file as script tag
 
-// Firebase config (already prefilled)
-const firebaseConfig = {
-  apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
-  authDomain: "piget-f160e.firebaseapp.com",
-  projectId: "piget-f160e",
-  storageBucket: "piget-f160e.appspot.com",
-  messagingSenderId: "106356200385",
-  appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
-};
+const usernameSpan = document.getElementById("username");
+const tokenCountEl = document.getElementById("token-count");
+const spinBtn = document.getElementById("spin-btn");
+const spinResult = document.getElementById("spin-result");
+const nextSpin = document.getElementById("next-spin");
+const logoutBtn = document.getElementById("logoutBtn");
 
-// Init Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+let currentUser = null;
+let userDocRef = null;
 
-// DOM Elements
-const welcome = document.getElementById("welcome-user");
-const tokenCount = document.getElementById("token-count");
-const logoutBtn = document.getElementById("logout");
-
-// Auth check and token display
-onAuthStateChanged(auth, async user => {
-  if (user) {
-    const username = user.email.replace("@piget.user", "");
-    welcome.textContent = `Welcome, ${username}!`;
-
-    const userDoc = doc(db, "users", user.uid);
-    const docSnap = await getDoc(userDoc);
-
-    if (docSnap.exists()) {
-      const data = docSnap.data();
-      tokenCount.textContent = data.tokens || 0;
-    } else {
-      await setDoc(userDoc, { tokens: 0, packsOpened: 0 });
-      tokenCount.textContent = 0;
-    }
-  } else {
+onAuthStateChanged(auth, async (user) => {
+  if (!user) {
     window.location.href = "login.html";
+    return;
+  }
+
+  currentUser = user;
+  const username = user.email.replace("@piget.user", "");
+  usernameSpan.textContent = username;
+
+  userDocRef = doc(db, "users", user.uid);
+  const docSnap = await getDoc(userDocRef);
+
+  if (!docSnap.exists()) {
+    await setDoc(userDocRef, {
+      tokens: 0,
+      lastSpin: 0
+    });
+    tokenCountEl.textContent = "0";
+  } else {
+    const data = docSnap.data();
+    tokenCountEl.textContent = data.tokens || "0";
+    updateSpinCooldown(data.lastSpin);
   }
 });
 
-// Logout button
-logoutBtn.addEventListener("click", () => {
-  signOut(auth).then(() => {
-    window.location.href = "login.html";
+function updateSpinCooldown(lastSpin) {
+  const now = Date.now();
+  const timeLeft = 86400000 - (now - lastSpin);
+  if (timeLeft > 0) {
+    spinBtn.disabled = true;
+    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+    const mins = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    nextSpin.textContent = `Come back in ${hours}h ${mins}m`;
+  }
+}
+
+spinBtn.addEventListener("click", async () => {
+  if (!currentUser || !userDocRef) return;
+
+  const docSnap = await getDoc(userDocRef);
+  const data = docSnap.data();
+  const lastSpin = data.lastSpin || 0;
+
+  const now = Date.now();
+  if (now - lastSpin < 86400000) {
+    spinResult.textContent = "You already claimed your daily spin!";
+    return;
+  }
+
+  const reward = Math.floor(Math.random() * 701) + 300;
+  const newTokens = (data.tokens || 0) + reward;
+
+  await updateDoc(userDocRef, {
+    tokens: newTokens,
+    lastSpin: now
   });
+
+  tokenCountEl.textContent = newTokens;
+  spinResult.textContent = `You won ${reward} tokens! 🎉`;
+  spinBtn.disabled = true;
+  updateSpinCooldown(now);
+});
+
+logoutBtn.addEventListener("click", async () => {
+  await signOut(auth);
+  window.location.href = "login.html";
 });
