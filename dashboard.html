@@ -2,36 +2,31 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piget | Dashboard</title>
   <link rel="stylesheet" href="main.css" />
+  <script type="module" src="dashboard.js" defer></script>
 </head>
 <body>
   <div class="sidebar">
     <h1 class="logo">Piget</h1>
-    <a class="nav-link active">Dashboard</a>
-    <a href="settings.html" class="nav-link">Settings</a>
-    <a href="market.html" class="nav-link">Market</a>
-    <button class="logout-btn" onclick="logout()">Logout</button>
+    <a href="dashboard.html" class="active">Dashboard</a>
+    <a href="market.html">Market</a>
+    <a href="settings.html">Settings</a>
+    <button id="logout" class="logout-btn">Logout</button>
   </div>
-
-  <div class="main">
-    <h1 id="welcome">Welcome, User!</h1>
-    <div class="stats-container">
-      <div class="stat-box">
-        <h2>Tokens</h2>
-        <p id="tokenCount">0</p>
+  <div class="main-content">
+    <h2 id="welcome-user">Welcome, User!</h2>
+    <div class="stat-cards">
+      <div class="stat-card">
+        <h3>Tokens</h3>
+        <p id="token-count">Loading...</p>
       </div>
-      <div class="stat-box">
-        <h2>Packs Opened</h2>
-        <p id="packsOpened">0</p>
+      <div class="stat-card">
+        <h3>Packs Opened</h3>
+        <p id="packs-opened">0</p>
       </div>
     </div>
   </div>
-
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
-  <script src="firebase-init.js"></script>
-  <script src="dashboard.js"></script>
 </body>
 </html>
