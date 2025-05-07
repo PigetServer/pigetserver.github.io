@@ -75,3 +75,26 @@ body {
   font-size: 18px;
   margin-bottom: 10px;
 }
+#spin-section {
+  background-color: #2a2a2a;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+#spinWheelBtn {
+  background-color: #00aaff;
+  color: white;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#spinWheelBtn:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
