@@ -4,60 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Piget | Dashboard</title>
-  <link rel="stylesheet" href="main.css" />
-  <script type="module" src="dashboard.js" defer></script>
+  <link rel="stylesheet" href="main.css"/>
 </head>
 <body>
   <div class="sidebar">
-    <h2>Piget</h2>
-    <a href="dashboard.html" class="active">Dashboard</a>
-    <a href="market.html">Market</a>
-    <a href="settings.html">Settings</a>
-    <button id="logoutBtn" class="logout-btn">Logout</button>
+    <h2 class="logo">Piget</h2>
+    <a href="dashboard.html" class="nav active">Dashboard</a>
+    <a href="market.html" class="nav">Market</a>
+    <a href="settings.html" class="nav">Settings</a>
+    <button id="logout" class="logout">Logout</button>
   </div>
 
   <div class="main-content">
     <h1>Welcome, <span id="username">User</span>!</h1>
-
-    <div class="stats">
-      <div class="stat-box">
-        <h3>Tokens</h3>
-        <p id="token-count">0</p>
+    <div class="stats-container">
+      <div class="stat-card">
+        <h2>Tokens</h2>
+        <p id="tokenCount">0</p>
       </div>
-      <div class="stat-box">
-        <h3>Packs Opened</h3>
-        <p>0</p>
+      <div class="stat-card">
+        <h2>Packs Opened</h2>
+        <p id="packsOpened">0</p>
       </div>
     </div>
 
-    <div class="wheel-container">
-      <h2>Daily Spin</h2>
-      <button id="spin-btn">🎡 Spin the Wheel</button>
-      <p id="spin-result"></p>
-      <p id="next-spin"></p>
+    <div class="spin-section">
+      <button id="spinButton">🎡 Daily Spin</button>
+      <p id="spinResult"></p>
     </div>
   </div>
 
-  <!-- Firebase setup -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-    import { getFirestore, doc, getDoc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
-      authDomain: "piget-f160e.firebaseapp.com",
-      projectId: "piget-f160e",
-      storageBucket: "piget-f160e.appspot.com",
-      messagingSenderId: "106356200385",
-      appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    export { auth, db, doc, getDoc, setDoc, updateDoc, onAuthStateChanged, signOut };
-  </script>
+  <script type="module" src="dashboard.js"></script>
 </body>
 </html>
