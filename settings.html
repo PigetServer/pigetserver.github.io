@@ -3,29 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Piget | Settings</title>
+  <title>Piget - Settings</title>
   <link rel="stylesheet" href="main.css" />
-  <script defer src="settings.js"></script>
+  <script type="module" src="settings.js" defer></script>
 </head>
 <body>
   <div class="sidebar">
-    <div>
-      <h2>Piget</h2>
-      <div class="nav-links">
-        <a href="dashboard.html">Dashboard</a>
-        <a href="market.html">Market</a>
-        <a href="settings.html" class="active">Settings</a>
-      </div>
-    </div>
-    <button class="logout-btn" onclick="logout()">Logout</button>
+    <h2>Piget</h2>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="market.html">Market</a>
+    <a href="settings.html" class="active">Settings</a>
+    <button id="logoutBtn">Logout</button>
   </div>
-
-  <div class="main-content">
+  <div class="content">
     <h1>Settings</h1>
-    <p>Choose Background:</p>
-    <button onclick="setBackground('#1e1e1e')">Dark</button>
-    <button onclick="setBackground('#ffffff')">Light</button>
-    <button onclick="setBackground('#2e2a4f')">Purple</button>
+    <p>Select a background:</p>
+    <button class="bg-button" data-color="#1e1e1e">Dark</button>
+    <button class="bg-button" data-color="#333333">Gray</button>
+    <button class="bg-button" data-color="#111111">Black</button>
   </div>
 </body>
 </html>
