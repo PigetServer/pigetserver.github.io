@@ -1,7 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
-import { getFirestore, doc, getDoc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-
+// Firebase Config (already initialized)
 const firebaseConfig = {
   apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
   authDomain: "piget-f160e.firebaseapp.com",
@@ -11,67 +8,51 @@ const firebaseConfig = {
   appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
 };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-const usernameEl = document.getElementById('username');
-const tokenCountEl = document.getElementById('tokenCount');
-const packsOpenedEl = document.getElementById('packsOpened');
-const spinBtn = document.getElementById('spinButton');
-const spinResultEl = document.getElementById('spinResult');
+const openPackBtn = document.getElementById('openPackBtn');
+const logoutBtn = document.getElementById('logoutBtn');
+const resultDiv = document.getElementById('result');
 
-let currentUser;
+const blooks = [
+  "Red", "Blue", "Green", "Yellow", "Purple",
+  "Orange", "Pink", "Cyan", "Black", "White"
+];
 
-onAuthStateChanged(auth, async (user) => {
-  if (user) {
-    const username = user.email.replace('@piget.user', '');
-    usernameEl.textContent = username;
-    currentUser = user;
+auth.onAuthStateChanged(async user => {
+  if (!user) return (window.location.href = "login.html");
+  const uid = user.uid;
+  const userRef = db.collection("users").doc(uid);
+  const userDoc = await userRef.get();
 
-    const userRef = doc(db, "users", user.uid);
-    const userSnap = await getDoc(userRef);
-    if (!userSnap.exists()) {
-      await setDoc(userRef, {
-        tokens: 0,
-        packsOpened: 0,
-        lastSpin: 0
-      });
+  if (!userDoc.exists) {
+    await userRef.set({ tokens: 0, inventory: [] });
+  }
+
+  openPackBtn.onclick = async () => {
+    const data = (await userRef.get()).data();
+    let tokens = data.tokens || 0;
+
+    if (tokens < 20) {
+      resultDiv.textContent = "Not enough tokens!";
+      return;
     }
 
-    const userData = (await getDoc(userRef)).data();
-    tokenCountEl.textContent = userData.tokens;
-    packsOpenedEl.textContent = userData.packsOpened;
-  } else {
-    window.location.href = "login.html";
-  }
-});
+    const wonBlook = blooks[Math.floor(Math.random() * blooks.length)];
+    tokens -= 20;
+    const updatedInventory = [...(data.inventory || []), wonBlook];
 
-spinBtn.addEventListener("click", async () => {
-  if (!currentUser) return;
+    await userRef.update({
+      tokens,
+      inventory: updatedInventory
+    });
 
-  const userRef = doc(db, "users", currentUser.uid);
-  const snap = await getDoc(userRef);
-  const data = snap.data();
+    resultDiv.textContent = `You opened a Color Pack and got: ${wonBlook}`;
+  };
 
-  const now = Date.now();
-  const dayMs = 24 * 60 * 60 * 1000;
-  if (now - data.lastSpin < dayMs) {
-    spinResultEl.textContent = "You’ve already spun today. Try again tomorrow!";
-    return;
-  }
-
-  const reward = Math.floor(Math.random() * 701) + 300;
-  await updateDoc(userRef, {
-    tokens: data.tokens + reward,
-    lastSpin: now
-  });
-
-  tokenCountEl.textContent = data.tokens + reward;
-  spinResultEl.textContent = `You won ${reward} tokens! 🎉`;
-});
-
-document.getElementById("logout").addEventListener("click", async () => {
-  await signOut(auth);
-  window.location.href = "login.html";
+  logoutBtn.onclick = () => {
+    auth.signOut().then(() => (window.location.href = "login.html"));
+  };
 });
