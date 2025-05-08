@@ -3,37 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Piget | Dashboard</title>
-  <link rel="stylesheet" href="main.css"/>
+  <title>Piget - Market</title>
+  <link rel="stylesheet" href="main.css">
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+  <script defer src="market.js"></script>
 </head>
 <body>
-  <div class="sidebar">
-    <h2 class="logo">Piget</h2>
-    <a href="dashboard.html" class="nav active">Dashboard</a>
-    <a href="market.html" class="nav">Market</a>
-    <a href="settings.html" class="nav">Settings</a>
-    <button id="logout" class="logout">Logout</button>
-  </div>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>Piget</h2>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="market.html" class="active">Market</a>
+      <a href="settings.html">Settings</a>
+      <button id="logoutBtn" class="logout">Logout</button>
+    </aside>
 
-  <div class="main-content">
-    <h1>Welcome, <span id="username">User</span>!</h1>
-    <div class="stats-container">
-      <div class="stat-card">
-        <h2>Tokens</h2>
-        <p id="tokenCount">0</p>
+    <main class="main-content">
+      <h1>Market</h1>
+      <div class="pack">
+        <h2>Color Pack</h2>
+        <p>Cost: 20 Tokens</p>
+        <button id="openPackBtn">Open Pack</button>
+        <div id="result"></div>
       </div>
-      <div class="stat-card">
-        <h2>Packs Opened</h2>
-        <p id="packsOpened">0</p>
-      </div>
-    </div>
-
-    <div class="spin-section">
-      <button id="spinButton">🎡 Daily Spin</button>
-      <p id="spinResult"></p>
-    </div>
+    </main>
   </div>
-
-  <script type="module" src="dashboard.js"></script>
 </body>
 </html>
