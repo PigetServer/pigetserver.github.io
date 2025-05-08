@@ -1,89 +1,77 @@
-import {
-  auth,
-  db,
-  doc,
-  getDoc,
-  setDoc,
-  updateDoc,
-  onAuthStateChanged,
-  signOut
-} from "./dashboard.html"; // Same file as script tag
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
-const usernameSpan = document.getElementById("username");
-const tokenCountEl = document.getElementById("token-count");
-const spinBtn = document.getElementById("spin-btn");
-const spinResult = document.getElementById("spin-result");
-const nextSpin = document.getElementById("next-spin");
-const logoutBtn = document.getElementById("logoutBtn");
+const firebaseConfig = {
+  apiKey: "AIzaSyDUIz_zrq0zW8xd8-SogsNn1RbgODj0P3c",
+  authDomain: "piget-f160e.firebaseapp.com",
+  projectId: "piget-f160e",
+  storageBucket: "piget-f160e.appspot.com",
+  messagingSenderId: "106356200385",
+  appId: "1:106356200385:web:6e4f808dbe3381f3de9540"
+};
 
-let currentUser = null;
-let userDocRef = null;
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+const usernameEl = document.getElementById('username');
+const tokenCountEl = document.getElementById('tokenCount');
+const packsOpenedEl = document.getElementById('packsOpened');
+const spinBtn = document.getElementById('spinButton');
+const spinResultEl = document.getElementById('spinResult');
+
+let currentUser;
 
 onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    window.location.href = "login.html";
-    return;
-  }
+  if (user) {
+    const username = user.email.replace('@piget.user', '');
+    usernameEl.textContent = username;
+    currentUser = user;
 
-  currentUser = user;
-  const username = user.email.replace("@piget.user", "");
-  usernameSpan.textContent = username;
+    const userRef = doc(db, "users", user.uid);
+    const userSnap = await getDoc(userRef);
+    if (!userSnap.exists()) {
+      await setDoc(userRef, {
+        tokens: 0,
+        packsOpened: 0,
+        lastSpin: 0
+      });
+    }
 
-  userDocRef = doc(db, "users", user.uid);
-  const docSnap = await getDoc(userDocRef);
-
-  if (!docSnap.exists()) {
-    await setDoc(userDocRef, {
-      tokens: 0,
-      lastSpin: 0
-    });
-    tokenCountEl.textContent = "0";
+    const userData = (await getDoc(userRef)).data();
+    tokenCountEl.textContent = userData.tokens;
+    packsOpenedEl.textContent = userData.packsOpened;
   } else {
-    const data = docSnap.data();
-    tokenCountEl.textContent = data.tokens || "0";
-    updateSpinCooldown(data.lastSpin);
+    window.location.href = "login.html";
   }
 });
 
-function updateSpinCooldown(lastSpin) {
-  const now = Date.now();
-  const timeLeft = 86400000 - (now - lastSpin);
-  if (timeLeft > 0) {
-    spinBtn.disabled = true;
-    const hours = Math.floor(timeLeft / (1000 * 60 * 60));
-    const mins = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-    nextSpin.textContent = `Come back in ${hours}h ${mins}m`;
-  }
-}
-
 spinBtn.addEventListener("click", async () => {
-  if (!currentUser || !userDocRef) return;
+  if (!currentUser) return;
 
-  const docSnap = await getDoc(userDocRef);
-  const data = docSnap.data();
-  const lastSpin = data.lastSpin || 0;
+  const userRef = doc(db, "users", currentUser.uid);
+  const snap = await getDoc(userRef);
+  const data = snap.data();
 
   const now = Date.now();
-  if (now - lastSpin < 86400000) {
-    spinResult.textContent = "You already claimed your daily spin!";
+  const dayMs = 24 * 60 * 60 * 1000;
+  if (now - data.lastSpin < dayMs) {
+    spinResultEl.textContent = "You’ve already spun today. Try again tomorrow!";
     return;
   }
 
   const reward = Math.floor(Math.random() * 701) + 300;
-  const newTokens = (data.tokens || 0) + reward;
-
-  await updateDoc(userDocRef, {
-    tokens: newTokens,
+  await updateDoc(userRef, {
+    tokens: data.tokens + reward,
     lastSpin: now
   });
 
-  tokenCountEl.textContent = newTokens;
-  spinResult.textContent = `You won ${reward} tokens! 🎉`;
-  spinBtn.disabled = true;
-  updateSpinCooldown(now);
+  tokenCountEl.textContent = data.tokens + reward;
+  spinResultEl.textContent = `You won ${reward} tokens! 🎉`;
 });
 
-logoutBtn.addEventListener("click", async () => {
+document.getElementById("logout").addEventListener("click", async () => {
   await signOut(auth);
   window.location.href = "login.html";
 });
